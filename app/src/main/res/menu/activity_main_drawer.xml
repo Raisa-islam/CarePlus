@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_TaskList"
+            android:icon="@drawable/ic_baseline_format_list_bulleted_24"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_Calender"
+            android:icon="@drawable/ic_baseline_calendar_today_24"
+            android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/nav_Add"
+            android:icon="@drawable/ic_baseline_add_24"
+            android:title="AddMember" />
+        <item
+            android:id="@+id/nav_Loc"
+            android:icon="@drawable/ic_baseline_location_on_24"
+            android:title="Location" />
+    </group>
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/nav_rate_us"
+                android:icon="@drawable/ic_baseline_rate_review_24"
+                android:title="@string/menu_rate" />
+
+            <item
+                android:id="@+id/nav_about_us"
+                android:icon="@drawable/ic_baseline_person_24"
+                android:title="@string/menu_about" />
+
+            <item
+                android:id="@+id/nav_Settings"
+                android:icon="@drawable/ic_baseline_settings_24"
+                android:title="@string/menu_setting" />
+        </menu>
+    </item>
+</menu>

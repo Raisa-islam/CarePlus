@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.raisa.update1.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" ></fragment>
+
+    <fragment
+        android:id="@+id/nav_TaskList"
+        android:name="com.raisa.update1.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_Calender"
+        android:name="com.raisa.update1.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_Add"
+        android:name="com.raisa.update1.ui.addmember.AddMemberFragment"
+        android:label="@string/menu_addmember"
+        tools:layout="@layout/fragment_add_member" />
+    <fragment
+        android:id="@+id/nav_Loc"
+        android:name="com.raisa.update1.ui.location.LocationFragment"
+        android:label="@string/menu_location"
+        tools:layout="@layout/fragment_location2" />
+    <fragment
+        android:id="@+id/nav_about_us"
+        android:name="com.raisa.update1.ui.about.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/nav_rate_us"
+        android:name="com.raisa.update1.ui.rate.RateFragment"
+        android:label="@string/menu_rate"
+        tools:layout="@layout/fragment_rate" />
+    <fragment
+        android:id="@+id/nav_Settings"
+        android:name="com.raisa.update1.ui.settings.SettingsFragment"
+        android:label="@string/menu_setting"
+        tools:layout="@layout/fragment_settings" />
+
+
+
+</navigation>
