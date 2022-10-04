@@ -40,7 +40,7 @@ public class TaskList_card extends AppCompatActivity {
 
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.fragment_add_task);
+        dialog.setContentView(R.layout.fragment_create_task);
         LottieAnimationView lottieAdd;
         lottieAdd = dialog.findViewById(R.id.btnAdd);
 
