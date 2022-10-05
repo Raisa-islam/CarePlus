@@ -55,154 +55,175 @@
 
 
     </FrameLayout>
+
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/frame1">
+        android:layout_below="@+id/frame1"
+        android:layout_marginTop="20dp">
+
         <LinearLayout
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:layout_marginLeft="23dp"
-            android:orientation="vertical"
-            android:layout_height="wrap_content" >
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center">
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:layout_weight="1">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_Basic"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="15dp"
                     android:layout_margin="10dp"
-                    android:id="@+id/card_Basic"
+                    android:padding="25dp"
                     app:cardBackgroundColor="@color/white"
-                    android:padding="25dp">
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/ic_baseline_info_24"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_baseline_info_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Basic Info"
                             android:textColor="@color/colorAccent"
-                            android:textStyle="bold"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/CardTask"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="15dp"
                     android:layout_margin="10dp"
-                    android:id="@+id/CardTask"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/ic_baseline_format_list_bulleted_24"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_baseline_format_list_bulleted_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Daily Task List"
-                            android:textStyle="bold"
                             android:textColor="@color/colorAccent"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                 </LinearLayout>
                 />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/card_Calender"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        app:cardCornerRadius="15dp"
                         android:layout_margin="10dp"
-                        android:id="@+id/card_Calender"
                         android:padding="23dp"
-                        app:cardBackgroundColor="@color/white">
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="10dp">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
 
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="center">
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
-                                android:background="@drawable/ic_baseline_calendar_today_24"
-                                android:layout_gravity="center"/>
+                                android:layout_gravity="center"
+                                android:background="@drawable/ic_baseline_calendar_today_24" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Calender"
-                                android:textStyle="bold"
                                 android:textColor="@color/colorAccent"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/card_immergency"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        app:cardCornerRadius="15dp"
                         android:layout_margin="10dp"
-                        android:id="@+id/card_immergency"
                         android:padding="23dp"
-                        app:cardBackgroundColor="@color/white">
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="10dp">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
 
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="center">
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
-                                android:background="@drawable/images"
-                                android:layout_gravity="center"/>
+                                android:layout_gravity="center"
+                                android:background="@drawable/images" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Immergency"
-                                android:textStyle="bold"
                                 android:textColor="@color/colorAccent"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -213,138 +234,157 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center">
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:layout_weight="1">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_Location"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="15dp"
                     android:layout_margin="10dp"
-                    android:id="@+id/card_Location"
+                    android:padding="25dp"
                     app:cardBackgroundColor="@color/white"
-                    android:padding="25dp">
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/ic_baseline_info_24"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_baseline_info_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Location"
                             android:textColor="@color/colorAccent"
-                            android:textStyle="bold"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/Card_settings"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="15dp"
                     android:layout_margin="10dp"
-                    android:id="@+id/Card_settings"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/ic_baseline_format_list_bulleted_24"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_baseline_format_list_bulleted_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Settings"
-                            android:textStyle="bold"
                             android:textColor="@color/colorAccent"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                 </LinearLayout>
                 />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center">
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:layout_weight="1">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_AddMember"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="15dp"
                     android:layout_margin="10dp"
-                    android:id="@+id/card_AddMember"
+                    android:padding="25dp"
                     app:cardBackgroundColor="@color/white"
-                    android:padding="25dp">
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/ic_baseline_info_24"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_baseline_info_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Add Member"
+                            android:text="Members"
                             android:textColor="@color/colorAccent"
-                            android:textStyle="bold"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/Card_Logout"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="15dp"
                     android:layout_margin="10dp"
-                    android:id="@+id/Card_Logout"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:background="@drawable/ic_baseline_format_list_bulleted_24"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_baseline_format_list_bulleted_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Log Out"
-                            android:textStyle="bold"
                             android:textColor="@color/colorAccent"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                 </LinearLayout>
                 />
