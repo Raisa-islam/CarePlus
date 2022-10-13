@@ -17,12 +17,13 @@ public class LogIn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_log_in);
         createnewAccount=findViewById(R.id.createNewAccount);
         login = findViewById(R.id.btnLogin);
         email = findViewById(R.id.inputEmail);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         createnewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
