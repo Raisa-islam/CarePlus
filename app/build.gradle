@@ -47,4 +47,7 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:3.4.4'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+
+    //for circular image
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 }
