@@ -58,7 +58,7 @@ public class MainActivity2 extends AppCompatActivity {
         log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity2.this, MainActivity.class);
+                Intent i = new Intent(MainActivity2.this, LogIn.class);
                 startActivity(i);
                 Toast.makeText(MainActivity2.this, "Logged out!", Toast.LENGTH_SHORT).show();
             }
