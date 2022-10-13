@@ -29,14 +29,18 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:background="@color/white">
-
-                <ImageView
+                android:layout_marginTop="20dp"
+                android:background="@color/colorAccent">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileCircleImageView"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_baseline_face_2_24" />
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/imageBorderColor"
+                    android:src="@drawable/user_dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"/>
+
 
             </LinearLayout>
 
@@ -46,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="50dp"
                 android:text="Hello Raisa!"
                 android:textColor="@color/white"
                 android:textSize="16sp"
