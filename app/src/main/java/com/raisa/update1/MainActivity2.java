@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity2 extends AppCompatActivity {
     CardView task, basic_info, settings, log_out, member, location, calender, immergency;
     @Override
@@ -58,8 +60,10 @@ public class MainActivity2 extends AppCompatActivity {
         log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
                 Intent i = new Intent(MainActivity2.this, LogIn.class);
                 startActivity(i);
+                finish();
                 Toast.makeText(MainActivity2.this, "Logged out!", Toast.LENGTH_SHORT).show();
             }
         });

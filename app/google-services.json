@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "945730538364",
+    "project_id": "finalproject-f6623",
+    "storage_bucket": "finalproject-f6623.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945730538364:android:2007f694abc33863a0b2f9",
+        "android_client_info": {
+          "package_name": "com.raisa.update1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945730538364-873a8de0h4nnev9uvglpmsshjtr421c7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7We-bNyY5o-VEytssZRICGys7Duiw_eA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945730538364-873a8de0h4nnev9uvglpmsshjtr421c7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
