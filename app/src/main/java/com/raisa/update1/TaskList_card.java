@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -43,30 +44,19 @@ public class TaskList_card extends AppCompatActivity {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.fragment_create_task);
-        LottieAnimationView lottieAdd;
-        lottieAdd = dialog.findViewById(R.id.btnAdd);
+
+        TextView createTask;
+        createTask = dialog.findViewById(R.id.AddNewTask);
 
         //moner moto coding*******************************************
         dialog.show();
 
-        lottieAdd.setOnClickListener(new View.OnClickListener() {
+        createTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if (delete_on){
-                    lottieDelete.setMinAndMaxProgress(0.0f,1.0f);
-                    lottieDelete.playAnimation();
-                    delete_on = false;
 
-                }
-                else
-                {
-                    lottieDelete.setMinAndMaxProgress(0.0f,1.0f);
-                    lottieDelete.playAnimation();
-                    delete_on = true;
-                }*/
-                lottieAdd.setMinAndMaxProgress(0.0f,1.0f);
-                lottieAdd.playAnimation();
                 dialog.dismiss();
+                Toast.makeText(TaskList_card.this, "Task added...", Toast.LENGTH_SHORT).show();
             }
         });
 

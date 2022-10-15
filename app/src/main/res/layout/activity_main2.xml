@@ -86,7 +86,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:padding="25dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="#8AB4F6"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp">
 
@@ -106,7 +106,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Basic Info"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -118,7 +118,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="#968AF6"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp">
 
@@ -138,7 +138,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Daily Task List"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -171,7 +171,7 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:padding="23dp"
-                        app:cardBackgroundColor="@color/white"
+                        app:cardBackgroundColor="#F68AEA"
                         app:cardCornerRadius="15dp"
                         app:cardElevation="10dp">
 
@@ -192,7 +192,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Calender"
-                                android:textColor="@color/colorAccent"
+                                android:textColor="@color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -204,7 +204,7 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:padding="23dp"
-                        app:cardBackgroundColor="@color/white"
+                        app:cardBackgroundColor="#F36C6C"
                         app:cardCornerRadius="15dp"
                         app:cardElevation="10dp">
 
@@ -225,7 +225,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Immergency"
-                                android:textColor="@color/colorAccent"
+                                android:textColor="@color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -248,7 +248,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:padding="25dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="#BDF68A"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp">
 
@@ -262,13 +262,13 @@
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/ic_baseline_info_24" />
+                            android:background="@drawable/ic_baseline_location_on_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Location"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -280,7 +280,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="#F68AB4"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp">
 
@@ -294,13 +294,13 @@
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/ic_baseline_format_list_bulleted_24" />
+                            android:background="@drawable/ic_baseline_settings_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Settings"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -328,7 +328,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:padding="25dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="#CC8AF6"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp">
 
@@ -342,13 +342,13 @@
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/ic_baseline_info_24" />
+                            android:background="@drawable/ic_baseline_groups_2_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Members"
-                            android:textColor="@color/colorAccent"
+                            android:text="@string/menu_addmember"
+                            android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -360,7 +360,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:padding="20dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="#8AEAF6"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp">
 
@@ -374,13 +374,13 @@
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/ic_baseline_format_list_bulleted_24" />
+                            android:background="@drawable/ic_logout" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Log Out"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>

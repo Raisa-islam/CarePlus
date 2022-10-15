@@ -12,7 +12,7 @@
 
         android:id="@+id/frame1"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
         android:background="@color/colorAccent"
@@ -29,35 +29,58 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:background="@color/white">
+                android:layout_marginTop="25dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileCircleImageView"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_baseline_face_2_24" />
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/imageBorderColor"
+                    android:src="@drawable/user_dp"
+                    android:layout_marginRight="10dp"/>
 
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/TVname"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="40dp"
-                android:text="Hello Raisa!"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/TVname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Hello Raisa!"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/TVEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="raisa.isl683\n@gmail.com"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
             <ImageView
                 android:id="@+id/edit_info"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="148dp"
+                android:layout_marginLeft="140dp"
                 android:background="@drawable/ic_edit_note_24" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
         </LinearLayout>
 
 
@@ -84,6 +107,7 @@
 
 
     </FrameLayout>
+
 
 
 </LinearLayout>

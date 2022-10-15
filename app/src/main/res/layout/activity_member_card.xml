@@ -27,14 +27,16 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:background="@color/white">
+                android:layout_marginTop="25dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileCircleImageView"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_baseline_face_2_24" />
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/imageBorderColor"
+                    android:src="@drawable/user_dp"
+                    android:layout_marginRight="10dp"/>
 
             </LinearLayout>
 
@@ -45,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="40dp"
-                android:text="Hello Raisa!"
+                android:text="Raisa Islam"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -53,5 +55,49 @@
 
 
     </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Find family member by email id"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:id="@+id/FindfamMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+        </androidx.recyclerview.widget.RecyclerView>
+    </FrameLayout>
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:background="@color/colorAccent"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Members"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ShowMember"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </FrameLayout>
 </LinearLayout>
