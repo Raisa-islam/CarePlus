@@ -113,7 +113,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
-            android:hint="particularly  allergic to any substance"
+            android:hint="Particularly  Allergic to Any Substance"
             android:padding="5dp"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/colorAccent"
@@ -175,7 +175,7 @@
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:importantForAutofill="no"
-                android:inputType="textImeMultiLine|textMultiLine"
+                android:inputType="number"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="14sp" />

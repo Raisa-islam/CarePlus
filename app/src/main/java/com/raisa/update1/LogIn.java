@@ -118,6 +118,14 @@ public class LogIn extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), MainActivity3.class));
                     finish();
                 }
+                GlobalVariable.UserName = documentSnapshot.getString("Name");
+                GlobalVariable.Email = documentSnapshot.getString("UserEmail");
+                GlobalVariable.age = documentSnapshot.getString("Age");
+                GlobalVariable.allergic = documentSnapshot.getString("Allergy");
+                GlobalVariable.emergencyPerson = documentSnapshot.getString("EmmergencyPerson");
+                GlobalVariable.healthIssue = documentSnapshot.getString("Health");
+                GlobalVariable.others = documentSnapshot.getString("Others");
+                GlobalVariable.contacNo = documentSnapshot.getString("emmergencyContact");
             }
         });
     }

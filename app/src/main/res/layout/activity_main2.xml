@@ -46,12 +46,31 @@
 
 
             <TextView
-                android:id="@+id/TVname"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="50dp"
-                android:text="Hello Raisa!"
+                android:text="Hello"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/Edtusername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="2dp"
+                android:text = " "
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@android:color/transparent"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="50dp"
+                android:text="!"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

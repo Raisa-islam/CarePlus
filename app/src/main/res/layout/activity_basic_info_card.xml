@@ -46,29 +46,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
+                <EditText
                     android:id="@+id/TVname"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="30dp"
-                    android:text="Hello Raisa!"
+                    android:text=""
                     android:textColor="@color/white"
+                    android:background="@android:color/transparent"
                     android:textSize="16sp"
                     android:textStyle="bold" />
-                <TextView
+                <EditText
                     android:id="@+id/TVEmail"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="3dp"
-                    android:text="raisa.isl683\n@gmail.com"
+                    android:text=""
                     android:textColor="@color/white"
+                    android:background="@android:color/transparent"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
             <ImageView
                 android:id="@+id/edit_info"
                 android:layout_width="45dp"
@@ -76,10 +84,6 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="140dp"
                 android:background="@drawable/ic_edit_note_24" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
         </LinearLayout>
 
@@ -97,11 +101,215 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="necessary infos"
-                android:id="@+id/info_text"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:text="Name                 :"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:id="@+id/info_text"/>
+                        <EditText
+                            android:id="@+id/EdtN"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:inputType="textImeMultiLine|textMultiLine"
+                            android:background="@android:color/transparent"
+                            android:layout_marginLeft="10dp"/>
+
+                    </LinearLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Age                     :"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:id="@+id/info_text2"/>
+                        <EditText
+                            android:id="@+id/EdtAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:background="@android:color/transparent"
+                            android:layout_marginLeft="10dp"/>
+
+                    </LinearLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Health Issues  :"
+                            android:layout_marginTop="4dp"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:id="@+id/info_text3"/>
+                        <EditText
+                            android:id="@+id/EdtHealthisuue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:background="@android:color/transparent"
+                            android:inputType="textImeMultiLine|textMultiLine"
+                            android:layout_marginLeft="10dp"/>
+
+                    </LinearLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Particularly Allergic \nto Any Substance    :"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginTop="4dp"
+                            android:id="@+id/info_text4"/>
+                        <EditText
+                            android:id="@+id/EdtAllergy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:inputType="textImeMultiLine|textMultiLine"
+                            android:background="@android:color/transparent"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="10dp"/>
+
+                    </LinearLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Emmergency Contact\nPerson Name                 :"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginTop="4dp"
+                            android:id="@+id/info_text5"/>
+                        <EditText
+                            android:id="@+id/Edtimmergency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:inputType="textImeMultiLine|textMultiLine"
+                            android:background="@android:color/transparent"
+                            android:layout_marginLeft="10dp"/>
+
+                    </LinearLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Emmergency Person Contact :"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginTop="4dp"
+                            android:id="@+id/info_text6"/>
+                        <EditText
+                            android:id="@+id/EdtimmergencyContact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:inputType="textImeMultiLine|textMultiLine"
+                            android:background="@android:color/transparent"
+                            android:layout_marginLeft="10dp"/>
+
+                    </LinearLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Others                             :"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/black"
+                            android:id="@+id/info_text7"/>
+                        <EditText
+                            android:id="@+id/EdtimmergencyOthers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:inputType="textImeMultiLine|textMultiLine"
+                            android:background="@android:color/transparent"
+                            android:layout_marginLeft="10dp"/>
+
+                    </LinearLayout>
+                </FrameLayout>
+
+            </LinearLayout>
+
 
         </ScrollView>
 

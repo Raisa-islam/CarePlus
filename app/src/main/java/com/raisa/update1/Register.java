@@ -100,6 +100,12 @@ public class Register extends AppCompatActivity {
                             Map<String, Object> userInfo = new HashMap<>();
                             userInfo.put("Name", Name.getText().toString());
                             userInfo.put("UserEmail", email.getText().toString());
+                            userInfo.put("Age", "");
+                            userInfo.put("Allergy", "");
+                            userInfo.put("EmmergencyPerson", "");
+                            userInfo.put("Health", "");
+                            userInfo.put("Others", "");
+                            userInfo.put("emmergencyContact", "");
 
                             // specifying role
                             if (aged.isChecked())

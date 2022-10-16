@@ -7,12 +7,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity2 extends AppCompatActivity {
     CardView task, basic_info, settings, log_out, member, location, calender, immergency;
+    EditText name;
+
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +29,8 @@ public class MainActivity2 extends AppCompatActivity {
         settings = findViewById(R.id.Card_settings);
         log_out = findViewById(R.id.Card_Logout);
         member = findViewById(R.id.card_AddMember);
+        name = findViewById(R.id.Edtusername);
+        name.setText(GlobalVariable.UserName);
 
         task.setOnClickListener(new View.OnClickListener() {
             @Override
