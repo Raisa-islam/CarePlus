@@ -11,12 +11,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.raisa.update1.R;
 
 public class SettingsFragment extends Fragment {
 
     private SettingsViewModel mViewModel;
+    EditText name;
 
     public static SettingsFragment newInstance() {
         return new SettingsFragment();

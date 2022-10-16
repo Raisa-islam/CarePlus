@@ -32,11 +32,12 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/usernameTextView"
                 style="@style/viewParent.headerText"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/profileCircleImageView"
+                android:background="@android:color/transparent"
                 android:text="Fatematuzzohra Prity"
                 android:textSize="18sp" />
 
