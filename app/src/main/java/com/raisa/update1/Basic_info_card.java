@@ -60,14 +60,7 @@ public class Basic_info_card extends AppCompatActivity {
         contact = findViewById(R.id.EdtimmergencyContact);
 
 
-        name.setText(GlobalVariable.UserName);
-        age.setText(GlobalVariable.age);
-        allergy.setText(GlobalVariable.allergic);
-        EPerson.setText(GlobalVariable.emergencyPerson);
-        health.setText(GlobalVariable.healthIssue);
-        others.setText(GlobalVariable.others);
-        contact.setText(contacNo);
-
+        set_data();
 
         edit_info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +140,7 @@ public class Basic_info_card extends AppCompatActivity {
                         }
 }               });
                 dialog.dismiss();
+                set_data();
 
             }
         });
@@ -155,6 +149,18 @@ public class Basic_info_card extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+    }
+
+    void set_data()
+    {
+        name.setText(GlobalVariable.UserName);
+        age.setText(GlobalVariable.age);
+        allergy.setText(GlobalVariable.allergic);
+        EPerson.setText(GlobalVariable.emergencyPerson);
+        health.setText(GlobalVariable.healthIssue);
+        others.setText(GlobalVariable.others);
+        contact.setText(contacNo);
 
     }
 }

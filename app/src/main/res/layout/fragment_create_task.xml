@@ -132,66 +132,125 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="16dp">
 
-
-
-
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Task Days"/>
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/every_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginLeft="7dp"
-                    android:id="@+id/alarmCB"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/ic_baseline_access_alarms_24"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginLeft="150dp"
+            android:text="every_day" />
 
-                    android:id="@+id/notifyCB"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/ic_baseline_circle_notifications_24"/>
-            </LinearLayout>
+    <LinearLayout
+        android:id="@+id/checkbox_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="7">
 
-        </LinearLayout>
+        <com.raisa.update1.Views.DayViewCheckBox
+            android:id="@+id/dv_sunday"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_day_view"
+            android:button="@null"
+            android:gravity="center"
+            android:text="S" />
+        <com.raisa.update1.Views.DayViewCheckBox
+            android:id="@+id/dv_monday"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_day_view"
+            android:button="@null"
+            android:gravity="center"
+            android:text="M" />
+        <com.raisa.update1.Views.DayViewCheckBox
+            android:id="@+id/dv_tuesday"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_day_view"
+            android:button="@null"
+            android:gravity="center"
+            android:text="T" />
+        <com.raisa.update1.Views.DayViewCheckBox
+            android:id="@+id/dv_wednesday"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_day_view"
+            android:button="@null"
+            android:gravity="center"
+            android:text="W" />
+        <com.raisa.update1.Views.DayViewCheckBox
+            android:id="@+id/dv_thursday"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_day_view"
+            android:button="@null"
+            android:gravity="center"
+            android:text="T"  />
+        <com.raisa.update1.Views.DayViewCheckBox
+            android:id="@+id/dv_friday"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_day_view"
+            android:button="@null"
+            android:gravity="center"
+            android:text="F"  />
+        <com.raisa.update1.Views.DayViewCheckBox
+            android:id="@+id/dv_saturday"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_day_view"
+            android:button="@null"
+            android:gravity="center"
+            android:text="S"/>
+    </LinearLayout>
+    </LinearLayout>
 
+    </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center">
-            <!--  <ImageView
-                  android:layout_width="50dp"
-                  android:layout_height="50dp"
-                  android:background="@drawable/addtask"
-                  android:id="@+id/addtaskDatabase"/>-->
             <TextView
                 android:id="@+id/AddNewTask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
+                android:layout_width="80dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:background="@color/colorAccent"
+                android:textSize="20sp"
                 android:text="Add"
                 />
         </LinearLayout>

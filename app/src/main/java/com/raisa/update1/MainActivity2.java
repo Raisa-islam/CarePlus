@@ -5,19 +5,24 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity2 extends AppCompatActivity {
     CardView task, basic_info, settings, log_out, member, location, calender, immergency;
     EditText name;
 
-    FirebaseFirestore db;
+    FirebaseFirestore fStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +35,8 @@ public class MainActivity2 extends AppCompatActivity {
         log_out = findViewById(R.id.Card_Logout);
         member = findViewById(R.id.card_AddMember);
         name = findViewById(R.id.Edtusername);
-        name.setText(GlobalVariable.UserName);
+
+        set_var();
 
         task.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,5 +80,32 @@ public class MainActivity2 extends AppCompatActivity {
                 Toast.makeText(MainActivity2.this, "Logged out!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    void set_var()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        fStore = FirebaseFirestore.getInstance();
+        GlobalVariable.Uid = user.getUid();
+
+
+        DocumentReference df = fStore.collection("Users").document(GlobalVariable.Uid);
+
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG","onSuccess: " + documentSnapshot.getData());
+                GlobalVariable.UserName = documentSnapshot.getString("Name");
+                GlobalVariable.Email = documentSnapshot.getString("UserEmail");
+                GlobalVariable.age = documentSnapshot.getString("Age");
+                GlobalVariable.allergic = documentSnapshot.getString("Allergy");
+                GlobalVariable.emergencyPerson = documentSnapshot.getString("EmmergencyPerson");
+                GlobalVariable.healthIssue = documentSnapshot.getString("Health");
+                GlobalVariable.others = documentSnapshot.getString("Others");
+                GlobalVariable.contacNo = documentSnapshot.getString("emmergencyContact");
+            }
+        });
+        name.setText(GlobalVariable.UserName);
+
     }
 }

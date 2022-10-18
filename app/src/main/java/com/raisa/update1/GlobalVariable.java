@@ -2,6 +2,7 @@ package com.raisa.update1;
 
 public class GlobalVariable {
     public static String UserName;
+    public static  String Uid;
     public static String Email;
     public static String age;
     public static String healthIssue;
@@ -9,6 +10,7 @@ public class GlobalVariable {
     public static String emergencyPerson;
     public static String contacNo;
     public static String others;
+
 
 
 }

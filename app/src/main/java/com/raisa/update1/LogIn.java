@@ -102,6 +102,7 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void checkUserAccessLevel(String uid) {
+        GlobalVariable.Uid = uid;
         DocumentReference df = fStore.collection("Users").document(uid);
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
