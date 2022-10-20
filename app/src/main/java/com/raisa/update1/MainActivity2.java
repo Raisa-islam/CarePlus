@@ -19,7 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity2 extends AppCompatActivity {
-    CardView task, basic_info, settings, log_out, member, location, calender, immergency;
+    CardView task, basic_info, settings, log_out, member, location, calender, emmergency;
     EditText name;
 
     FirebaseFirestore fStore;

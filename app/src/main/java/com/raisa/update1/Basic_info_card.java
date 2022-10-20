@@ -66,6 +66,7 @@ public class Basic_info_card extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showEditInfoDialog();
+                set_data();
             }
         });
     }
@@ -138,9 +139,10 @@ public class Basic_info_card extends AppCompatActivity {
                         else {
                             Toast.makeText(Basic_info_card.this, "Failed...", Toast.LENGTH_SHORT).show();
                         }
+
 }               });
                 dialog.dismiss();
-                set_data();
+
 
             }
         });
@@ -149,6 +151,7 @@ public class Basic_info_card extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
+
 
     }
 
