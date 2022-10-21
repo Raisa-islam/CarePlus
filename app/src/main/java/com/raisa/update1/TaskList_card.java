@@ -32,11 +32,14 @@ import com.raisa.update1.Views.DayViewCheckBox;
 
 import java.util.ArrayList;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class TaskList_card extends AppCompatActivity {
     TextView addTask;
     RecyclerView recyclerView;
     TaskListAdapter adapter;
     ArrayList<Task> list;
+    GifImageView noNote;
     int l, m;
     private DatabaseReference rootRef;
     @Override
@@ -48,45 +51,41 @@ public class TaskList_card extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
 
         addTask = findViewById(R.id.addTask);
+        noNote = findViewById(R.id.noNote);
         //****************************************************
         recyclerView = findViewById(R.id.taskRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //****************************************************************************************************************************************************************************
-/*list = new ArrayList<>();
-       adapter = new TaskListAdapter(this, list);// rootref
-       recyclerView.setAdapter(adapter);
-       rootRef.addValueEventListener(new ValueEventListener() {
+        list = new ArrayList<>();
 
-           @Override
-           public void onDataChange(@NonNull DataSnapshot snapshot) {
-               list.clear();
-               for (DataSnapshot dataSnapshot : snapshot.getChildren())
-               {
-                   Task task = dataSnapshot.getValue(Task.class);
-                   list.add(task);
-               }
-               adapter.notifyDataSetChanged();
-               if(list.size()==0){
-                   //noTasks.setText("No Tasks to show");
-               }
-               else{
-                  // noTasks.setText("");<pl.droidsonroids.gif.GifImageView
-                   //                android:layout_width="300dp"
-                   //                android:layout_height="300dp"
-                   //                android:layout_gravity="center"
-                   //                android:background="@drawable/no_note"
-                   //                android:id="@+id/noNote"/>
-               }
+        rootRef.addValueEventListener(new ValueEventListener() {
 
-           }
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Task task = dataSnapshot.getValue(Task.class);
+                    list.add(task);
+                }
+                adapter.notifyDataSetChanged();
+                if(list.size()==0){
 
-           @Override
-           public void onCancelled(@NonNull DatabaseError error) {
+                }
+                else{
+                    noNote.setVisibility(View.GONE);
+                 }
 
-           }
-       });
-*/
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        adapter = new TaskListAdapter(this, list);// rootref
+        recyclerView.setAdapter(adapter);
 
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override

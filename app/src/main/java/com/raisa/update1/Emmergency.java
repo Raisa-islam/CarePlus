@@ -1,5 +1,7 @@
 package com.raisa.update1;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -52,11 +55,10 @@ public class Emmergency extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        adapter = new E_adapter(this, list);
-        recyclerView.setAdapter(adapter);
+
 
 //************************************************************************************************************************************************
-      /*  rootRef.addValueEventListener(new ValueEventListener() {
+    /*    rootRef.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,7 +82,9 @@ public class Emmergency extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });*/
+        });
+        adapter = new E_adapter(this, list);
+        recyclerView.setAdapter(adapter);*/
         FAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
