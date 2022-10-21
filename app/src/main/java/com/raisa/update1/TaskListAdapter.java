@@ -3,8 +3,11 @@ package com.raisa.update1;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +48,33 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
         holder.hour.setText(task.getHour());
         holder.min.setText(task.getMin());
 
+        holder.menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(context, view);
+                popupMenu.getMenuInflater().inflate(R.menu.menu, popupMenu.getMenu());
+                popupMenu.show();
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId())
+                        {
+                            case R.id.menuDelete:
+                                Toast.makeText(context, "delete pressed inner part is remain", Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.menuUpdate:
+                                Toast.makeText(context, "update pressed inner part is remain", Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.menuComplete:
+                                Toast.makeText(context, "Complete pressed Inner part is remain", Toast.LENGTH_SHORT).show();
+                                holder.status.setText("COMPLETED");
+                                break;
+                        }
+                        return false;
+                    }
+                });
+            }
+        });
 
 
     }
@@ -56,7 +86,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView title, description, hour, min;
+        TextView title, description, hour, min, status;
+        ImageView menu;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
@@ -64,6 +95,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
             description = itemView.findViewById(R.id.description);
             hour = itemView.findViewById(R.id.hour);
             min = itemView.findViewById(R.id.min);
+            menu = itemView.findViewById(R.id.options);
+            status = itemView.findViewById(R.id.status);
+
 
             //TextView days = itemView.findViewById(R.id.days);
             // TextView status = itemView.findViewById(R.id.status);
