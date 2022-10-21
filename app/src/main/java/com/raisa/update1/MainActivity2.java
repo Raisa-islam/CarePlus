@@ -19,7 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity2 extends AppCompatActivity {
-    CardView task, basic_info, settings, log_out, member, location, calender, emmergency;
+    CardView task, basic_info, settings, log_out, member, calender, emmergency;
     EditText name;
 
     FirebaseFirestore fStore;
@@ -35,6 +35,8 @@ public class MainActivity2 extends AppCompatActivity {
         log_out = findViewById(R.id.Card_Logout);
         member = findViewById(R.id.card_AddMember);
         name = findViewById(R.id.Edtusername);
+        emmergency = findViewById(R.id.card_immergency);
+        calender = findViewById(R.id.card_Calender);
 
         set_var();
 
@@ -67,7 +69,20 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+        emmergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity2.this, Emmergency.class);
+                startActivity(i);
+            }
+        });
+        calender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity2.this, Calender_card.class);
+                startActivity(i);
+            }
+        });
 
         //********************************************************************************************************** logout relating to database
         log_out.setOnClickListener(new View.OnClickListener() {

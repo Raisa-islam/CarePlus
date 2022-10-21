@@ -27,8 +27,8 @@ public class Task_list_show extends ArrayAdapter<Task> {
         TextView description = listViewItem.findViewById(R.id.description);
         TextView hour = listViewItem.findViewById(R.id.hour);
         TextView min = listViewItem.findViewById(R.id.min);
-        TextView days = listViewItem.findViewById(R.id.days);
-        TextView status = listViewItem.findViewById(R.id.status);
+       // TextView days = listViewItem.findViewById(R.id.days);
+        //TextView status = listViewItem.findViewById(R.id.status);
 
 
         Task task = taskList.get(position);

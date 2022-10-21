@@ -9,6 +9,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,41 +52,41 @@ public class TaskList_card extends AppCompatActivity {
         recyclerView = findViewById(R.id.taskRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //****************************************************************************************************************************************************************************
+/*list = new ArrayList<>();
+       adapter = new TaskListAdapter(this, list);// rootref
+       recyclerView.setAdapter(adapter);
+       rootRef.addValueEventListener(new ValueEventListener() {
 
-        list = new ArrayList<>();
-        adapter = new TaskListAdapter(this, list);
-        recyclerView.setAdapter(adapter);
-        /*rootRef.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               list.clear();
+               for (DataSnapshot dataSnapshot : snapshot.getChildren())
+               {
+                   Task task = dataSnapshot.getValue(Task.class);
+                   list.add(task);
+               }
+               adapter.notifyDataSetChanged();
+               if(list.size()==0){
+                   //noTasks.setText("No Tasks to show");
+               }
+               else{
+                  // noTasks.setText("");<pl.droidsonroids.gif.GifImageView
+                   //                android:layout_width="300dp"
+                   //                android:layout_height="300dp"
+                   //                android:layout_gravity="center"
+                   //                android:background="@drawable/no_note"
+                   //                android:id="@+id/noNote"/>
+               }
 
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren())
-                {
-                    Task task = dataSnapshot.getValue(Task.class);
-                    list.add(task);
-                }
-                adapter.notifyDataSetChanged();
-                if(list.size()==0){
-                    //noTasks.setText("No Tasks to show");
-                }
-                else{
-                   // noTasks.setText("");<pl.droidsonroids.gif.GifImageView
-                    //                android:layout_width="300dp"
-                    //                android:layout_height="300dp"
-                    //                android:layout_gravity="center"
-                    //                android:background="@drawable/no_note"
-                    //                android:id="@+id/noNote"/>
-                }
+           }
 
-            }
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
-
+           }
+       });
+*/
 
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,34 +202,54 @@ public class TaskList_card extends AppCompatActivity {
                 String d = Task_desc.getText().toString().trim();
                 int n = hour[0];
                 int m = min[0];
-                boolean e=false, sun1=false, mon1= false, tues1 = false, wed1=false, thurs1=false, f=false, sat1=false;
+                String hrs = Integer.toString(n);
+                String min = Integer.toString(m);
+                boolean ad = false;
+                String e="0", sun1="0", mon1= "0", tues1 = "0", wed1="0", thurs1="0", f="0", sat1="0";
                 if (everyDay.isChecked()) {
-                    e =true;
+                    ad = true;
+                    e ="1";
                 }
                 if (sat.isChecked()) {
-                    sat1 =true;
+                    ad = true;
+                    sat1 ="1";
                 }
                 if (sun.isChecked()) {
-                    sun1 =true;
+                    ad = true;
+                    sun1 ="1";
                 }
                 if (mon.isChecked()) {
-                    mon1 =true;
+                    ad = true;
+                    mon1 ="1";
                 }
                 if (tues.isChecked()) {
-                    tues1 =true;
+                    ad = true;
+                    tues1 ="1";
                 }
                 if (wed.isChecked()) {
-                    wed1 =true;
+                    ad = true;
+                    wed1 ="1";
                 }
                 if (thurs.isChecked()) {
-                    thurs1=true;
+                    ad = true;
+                    thurs1="1";
                 }
                 if (fri.isChecked())
                 {
-                    f = true;
+                    ad = true;
+                    f = "1";
+                }
+                if(!TextUtils.isEmpty(t)||!TextUtils.isEmpty(d) || ad)
+                {
+                    add_data(t, d, hrs, min, e, sun1, mon1, tues1, wed1, thurs1, f, sat1 );
+
+
+                }
+                else {
+                    Toast.makeText(TaskList_card.this, "Please fill all the fields...", Toast.LENGTH_SHORT).show();
                 }
 
-                add_data(t, d, n, m, e, sun1, mon1, tues1, wed1, thurs1, f, sat1 );
+
                 dialog.dismiss();
                 Toast.makeText(TaskList_card.this, "Task added...", Toast.LENGTH_SHORT).show();
             }
@@ -240,8 +261,8 @@ public class TaskList_card extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
     }
-    private void add_data(String title_add, String description_add, int hour, int min, boolean everyday, boolean sun, boolean mon, boolean tues,
-                          boolean wed, boolean thurs, boolean fri, boolean sat)
+    private void add_data(String title_add, String description_add, String hour, String min, String everyday, String sun, String mon, String tues,
+                          String wed, String thurs, String fri, String sat)
     {
         String id = rootRef.push().getKey();
         Task task = new Task(title_add, description_add, hour, min, everyday, sun, mon, tues, wed, thurs, fri, sat);

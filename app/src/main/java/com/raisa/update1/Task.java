@@ -1,9 +1,10 @@
 package com.raisa.update1;
 
 public class Task {
-    String id, title, description;
-    int hour, min;
-    boolean everyday, sun, mon, tues, wed ,thurs, fri,sat;
+    String id, title, description, hour, min, everyday, sun, mon, tues, wed ,thurs, fri,sat;
+    public Task(){
+
+    }
 
     public String getId() {
         return id;
@@ -30,88 +31,88 @@ public class Task {
     }
 
     public String getHour() {
-        return String.valueOf(hour);
+        return hour;
     }
 
-    public void setHour(int hour) {
+    public void setHour(String hour) {
         this.hour = hour;
     }
 
     public String getMin() {
-        return String.valueOf(min);
+        return min;
     }
 
-    public void setMin(int min) {
+    public void setMin(String min) {
         this.min = min;
     }
 
-    public boolean isEveryday() {
+    public String getEveryday() {
         return everyday;
     }
 
-    public void setEveryday(boolean everyday) {
+    public void setEveryday(String everyday) {
         this.everyday = everyday;
     }
 
-    public boolean isSun() {
+    public String getSun() {
         return sun;
     }
 
-    public void setSun(boolean sun) {
+    public void setSun(String sun) {
         this.sun = sun;
     }
 
-    public boolean isMon() {
+    public String getMon() {
         return mon;
     }
 
-    public void setMon(boolean mon) {
+    public void setMon(String mon) {
         this.mon = mon;
     }
 
-    public boolean isTues() {
+    public String getTues() {
         return tues;
     }
 
-    public void setTues(boolean tues) {
+    public void setTues(String tues) {
         this.tues = tues;
     }
 
-    public boolean isWed() {
+    public String getWed() {
         return wed;
     }
 
-    public void setWed(boolean wed) {
+    public void setWed(String wed) {
         this.wed = wed;
     }
 
-    public boolean isThurs() {
+    public String getThurs() {
         return thurs;
     }
 
-    public void setThurs(boolean thurs) {
+    public void setThurs(String thurs) {
         this.thurs = thurs;
     }
 
-    public boolean isFri() {
+    public String getFri() {
         return fri;
     }
-    public boolean isSat() {
+
+    public void setFri(String fri) {
+        this.fri = fri;
+    }
+
+    public String getSat() {
         return sat;
     }
 
-    public void setFri(boolean fri) {
-        this.fri = fri;
-    }
-    public void setSat(boolean sat) {
+    public void setSat(String sat) {
         this.sat = sat;
     }
 
+    public Task(String title, String description, String hour, String min,
+                String everyday, String sun, String mon, String tues, String wed, String thurs, String fri, String sat) {
 
-    public Task( String title, String description, int hour, int min,
-                boolean everyday, boolean sun, boolean mon, boolean tues,
-                boolean wed, boolean thurs, boolean fri, boolean sat) {
-        //this.id = id;
         this.title = title;
         this.description = description;
         this.hour = hour;
@@ -123,7 +124,7 @@ public class Task {
         this.wed = wed;
         this.thurs = thurs;
         this.fri = fri;
-        this.sat = sat;
+        this.sat = this.sat;
     }
 }
 // public String get_day(){
