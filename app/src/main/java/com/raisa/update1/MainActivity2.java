@@ -118,6 +118,11 @@ public class MainActivity2 extends AppCompatActivity {
                 GlobalVariable.healthIssue = documentSnapshot.getString("Health");
                 GlobalVariable.others = documentSnapshot.getString("Others");
                 GlobalVariable.contacNo = documentSnapshot.getString("emmergencyContact");
+                GlobalVariable.contacNo2 = documentSnapshot.getString("emmergencyContact2");
+                GlobalVariable.Email1 =documentSnapshot.getString("emmergencyContactEmail");
+                GlobalVariable.Email2 =documentSnapshot.getString("emmergencyContactEmail2");
+                GlobalVariable.emergencyPerson2 = documentSnapshot.getString("EmmergencyPerson2");
+                GlobalVariable.bg = documentSnapshot.getString("BloodGroup");
             }
         });
         name.setText(GlobalVariable.UserName);

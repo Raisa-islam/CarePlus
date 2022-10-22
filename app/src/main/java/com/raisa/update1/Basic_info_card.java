@@ -35,7 +35,7 @@ public class Basic_info_card extends AppCompatActivity {
     ImageView edit_info;
     TextView info;
     EditText Name, email;
-    EditText name, age, allergy, EPerson, health, others, contact;
+    EditText name, age, allergy, EPerson, health, others, contact, bg, EPerson2, contact2, mail1, mail2;
     FirebaseFirestore db;
 
     @Override
@@ -45,22 +45,29 @@ public class Basic_info_card extends AppCompatActivity {
         setContentView(R.layout.activity_basic_info_card);
 
         edit_info = findViewById(R.id.edit_info);
-        info = findViewById(R.id.info_text);
+       // info = findViewById(R.id.info_text);
         Name = findViewById(R.id.TVname);
         email = findViewById(R.id.TVEmail);
 
         Name.setText(GlobalVariable.UserName);
         email.setText(GlobalVariable.Email);
-        name = findViewById(R.id.EdtN);
-        age = findViewById(R.id.EdtAge);
-        allergy = findViewById(R.id.EdtAllergy);
-        EPerson = findViewById(R.id.Edtimmergency);
-        health = findViewById(R.id.EdtHealthisuue);
-        others = findViewById(R.id.EdtimmergencyOthers);
-        contact = findViewById(R.id.EdtimmergencyContact);
+
+        name = findViewById(R.id.hintName);
+        age = findViewById(R.id.hintAge);
+        bg = findViewById(R.id.hintBloodGroup);
+        allergy = findViewById(R.id.hintAllergicTo);
+        EPerson = findViewById(R.id.hintName1);
+        EPerson2 = findViewById(R.id.hintName2);
+
+        health = findViewById(R.id.hintHealthIssues);
+        others = findViewById(R.id.Others);
+        contact = findViewById(R.id.hintMobileNo);
+        contact2 = findViewById(R.id.hintMobileNo2);
+        mail1 = findViewById(R.id.Mail);
+        mail2 = findViewById(R.id.Mail3);
 
 
-        set_data();
+        set_data();//Change hbe ei function*************************************************************8
 
         edit_info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +86,7 @@ public class Basic_info_card extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         TextView save = dialog.findViewById(R.id.SaveInfo);
-        EditText name, age, health, allergy, ePerson, eContact, others;
+        EditText name, age, health, allergy, ePerson, eContact, others, bloodGroup, email1, email2, ePerson2, econtact2;
         name = dialog.findViewById(R.id.idEdtName);
         age = dialog.findViewById(R.id.idEdtAge);
         health = dialog.findViewById(R.id.idEdtHealth);
@@ -87,8 +94,13 @@ public class Basic_info_card extends AppCompatActivity {
         ePerson = dialog.findViewById(R.id.idEdtClose);
         eContact = dialog.findViewById(R.id.idEdtContact);
         others = dialog.findViewById(R.id.idEdtOthers);
+        bloodGroup = dialog.findViewById(R.id.idEdtBg);
+        email1 = dialog.findViewById(R.id.idEdtEmail);
+        email2 = dialog.findViewById(R.id.idEdtEmail2);
+        ePerson2 = dialog.findViewById(R.id.idEdtClose2);
+        econtact2 = dialog.findViewById(R.id.idEdtContact2);
 
-        //moner moto coding*******************************************
+
         dialog.show();
         name.setText(GlobalVariable.UserName);
         age.setText(GlobalVariable.age);
@@ -97,17 +109,29 @@ public class Basic_info_card extends AppCompatActivity {
         ePerson.setText(GlobalVariable.emergencyPerson);
         eContact.setText(contacNo);
         others.setText(GlobalVariable.others);
+        ePerson2.setText(GlobalVariable.emergencyPerson2);
+        econtact2.setText(GlobalVariable.contacNo2);
+        email1.setText(GlobalVariable.Email1);
+        email2.setText(GlobalVariable.Email2);
+        bloodGroup.setText(GlobalVariable.bg);
        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String,Object> userDetail = new HashMap<>();
-                userDetail.put("Name", GlobalVariable.UserName);
-                userDetail.put("Age", age.getText().toString());
-                userDetail.put("Health", health.getText().toString());
-                userDetail.put("Allergy", allergy.getText().toString());
-                userDetail.put("EmmergencyPerson", ePerson.getText().toString());
-                userDetail.put("emmergencyContact", eContact.getText().toString());
-                userDetail.put("Others", others.getText().toString());
+                Map<String,Object> userInfo = new HashMap<>();
+//
+                userInfo.put("Name", name.getText().toString());
+                //userInfo.put("UserEmail", email.getText().toString());
+                userInfo.put("Age", age.getText().toString());
+                userInfo.put("Allergy", allergy.getText().toString());
+                userInfo.put("EmmergencyPerson", ePerson.getText().toString());
+                userInfo.put("EmmergencyPerson2", ePerson2.getText().toString());
+                userInfo.put("Health", health.getText().toString());
+                userInfo.put("Others", others.getText().toString());
+                userInfo.put("emmergencyContact", eContact.getText().toString());
+                userInfo.put("emmergencyContact2", econtact2.getText().toString());
+                userInfo.put("emmergencyContactEmail", email1.getText().toString());
+                userInfo.put("emmergencyContactEmail2", email2.getText().toString());
+                userInfo.put("BloodGroup", bloodGroup.getText().toString());
 
                 db.collection("Users").whereEqualTo("UserEmail",GlobalVariable.Email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -117,15 +141,21 @@ public class Basic_info_card extends AppCompatActivity {
                             DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                             String documentId = documentSnapshot.getId();
                             db.collection("Users").document(documentId)
-                                    .update(userDetail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    .update(userInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             GlobalVariable.age = age.getText().toString();
                                             GlobalVariable.healthIssue = health.getText().toString();
                                             GlobalVariable.allergic = allergy.getText().toString();
-                                             GlobalVariable.emergencyPerson = ePerson.getText().toString();
+                                             GlobalVariable.emergencyPerson = EPerson.getText().toString();
                                              GlobalVariable.contacNo = eContact.getText().toString();
                                              GlobalVariable.others = others.getText().toString();
+                                             GlobalVariable.bg = bloodGroup.getText().toString();
+                                             GlobalVariable.emergencyPerson = ePerson.getText().toString();
+                                             GlobalVariable.emergencyPerson2 = ePerson2.getText().toString();
+                                             GlobalVariable.contacNo2 = econtact2.getText().toString();
+                                             GlobalVariable.Email1 = email1.getText().toString();
+                                             GlobalVariable.Email2 = email2.getText().toString();
 
                                             Toast.makeText(Basic_info_card.this, "Basic info edited...", Toast.LENGTH_SHORT).show();
                                         }
@@ -161,9 +191,14 @@ public class Basic_info_card extends AppCompatActivity {
         age.setText(GlobalVariable.age);
         allergy.setText(GlobalVariable.allergic);
         EPerson.setText(GlobalVariable.emergencyPerson);
+        EPerson2.setText(GlobalVariable.emergencyPerson2);
         health.setText(GlobalVariable.healthIssue);
         others.setText(GlobalVariable.others);
+        bg.setText(GlobalVariable.bg);
         contact.setText(contacNo);
+        contact2.setText(GlobalVariable.contacNo2);
+        mail1.setText(GlobalVariable.Email1);
+        mail2.setText(GlobalVariable.Email2);
 
     }
 }

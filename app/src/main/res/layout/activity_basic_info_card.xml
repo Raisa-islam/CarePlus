@@ -1,321 +1,673 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
     tools:context=".Basic_info_card">
 
 
-    <FrameLayout
+        <FrameLayout
 
-        android:id="@+id/frame1"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:background="@color/colorAccent"
-        android:gravity="center_vertical">
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profileCircleImageView"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:civ_border_width="2dp"
-                    app:civ_border_color="@color/imageBorderColor"
-                    android:src="@drawable/user_dp"
-                    android:layout_marginRight="10dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <EditText
-                    android:id="@+id/TVname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="30dp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:background="@android:color/transparent"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-                <EditText
-                    android:id="@+id/TVEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="3dp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:background="@android:color/transparent"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right">
-            <ImageView
-                android:id="@+id/edit_info"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="140dp"
-                android:background="@drawable/ic_edit_note_24" />
-
-        </LinearLayout>
-
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="618dp">
-
-
-
-        <ScrollView
+            android:id="@+id/frame1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:background="@color/imageBorderColor"
+            android:gravity="center_vertical">
+
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profileCircleImageView"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@color/white"
+                        android:src="@drawable/user_dp"
+                        android:layout_marginRight="10dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <EditText
+                        android:id="@+id/TVname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:text="Name                 :"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:id="@+id/info_text"/>
-                        <EditText
-                            android:id="@+id/EdtN"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:inputType="textImeMultiLine|textMultiLine"
-                            android:background="@android:color/transparent"
-                            android:layout_marginLeft="10dp"/>
-
-                    </LinearLayout>
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="30dp"
+                        android:text="hi"
+                        android:textColor="@color/white"
+                        android:background="@android:color/transparent"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/TVEmail"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Age                     :"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:id="@+id/info_text2"/>
-                        <EditText
-                            android:id="@+id/EdtAge"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:background="@android:color/transparent"
-                            android:layout_marginLeft="10dp"/>
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="3dp"
+                        android:text="gmail.com"
+                        android:textColor="@color/white"
+                        android:background="@android:color/transparent"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                    </LinearLayout>
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Health Issues  :"
-                            android:layout_marginTop="4dp"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:id="@+id/info_text3"/>
-                        <EditText
-                            android:id="@+id/EdtHealthisuue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:background="@android:color/transparent"
-                            android:inputType="textImeMultiLine|textMultiLine"
-                            android:layout_marginLeft="10dp"/>
+                </LinearLayout>
 
-                    </LinearLayout>
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Particularly Allergic \nto Any Substance    :"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:layout_marginTop="4dp"
-                            android:id="@+id/info_text4"/>
-                        <EditText
-                            android:id="@+id/EdtAllergy"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:inputType="textImeMultiLine|textMultiLine"
-                            android:background="@android:color/transparent"
-                            android:textSize="16sp"
-                            android:layout_marginLeft="10dp"/>
 
-                    </LinearLayout>
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Emmergency Contact\nPerson Name                 :"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:layout_marginTop="4dp"
-                            android:id="@+id/info_text5"/>
-                        <EditText
-                            android:id="@+id/Edtimmergency"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:inputType="textImeMultiLine|textMultiLine"
-                            android:background="@android:color/transparent"
-                            android:layout_marginLeft="10dp"/>
-
-                    </LinearLayout>
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Emmergency Person Contact :"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:layout_marginTop="4dp"
-                            android:id="@+id/info_text6"/>
-                        <EditText
-                            android:id="@+id/EdtimmergencyContact"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:inputType="textImeMultiLine|textMultiLine"
-                            android:background="@android:color/transparent"
-                            android:layout_marginLeft="10dp"/>
-
-                    </LinearLayout>
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Others                             :"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:layout_marginTop="4dp"
-                            android:textColor="@color/black"
-                            android:id="@+id/info_text7"/>
-                        <EditText
-                            android:id="@+id/EdtimmergencyOthers"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:inputType="textImeMultiLine|textMultiLine"
-                            android:background="@android:color/transparent"
-                            android:layout_marginLeft="10dp"/>
-
-                    </LinearLayout>
-                </FrameLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
+                <ImageView
+                    android:id="@+id/edit_info"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="140dp"
+                    android:background="@drawable/ic_edit_note_24" />
 
             </LinearLayout>
 
 
-        </ScrollView>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="618dp">
 
 
-    </FrameLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/Name"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Name                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.037"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.057" />
+
+                <TextView
+                    android:id="@+id/semicolon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/Name"
+                    app:layout_constraintStart_toEndOf="@+id/Name"
+                    app:layout_constraintTop_toTopOf="@+id/Name"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/hintName"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon" />
+
+
+                <TextView
+                    android:id="@+id/Age"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Age                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.037"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.123" />
+
+                <TextView
+                    android:id="@+id/semicolon1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/Age"
+                    app:layout_constraintStart_toEndOf="@+id/Age"
+                    app:layout_constraintTop_toTopOf="@+id/Age"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/hintAge"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="Age"
+                    android:inputType="number"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon1"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon1" />
+
+
+                <TextView
+                    android:id="@+id/BloodGroup"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Blood Group                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.037"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.19" />
+
+                <TextView
+                    android:id="@+id/semicolon2"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/BloodGroup"
+                    app:layout_constraintStart_toEndOf="@+id/BloodGroup"
+                    app:layout_constraintTop_toTopOf="@+id/BloodGroup"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/hintBloodGroup"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="A+,B+,O+.."
+                    android:inputType="textPersonName"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon2"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon2" />
+
+                <TextView
+                    android:id="@+id/Healthissues"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Health Issues                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.037"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.258" />
+
+                <TextView
+                    android:id="@+id/semicolon3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/Healthissues"
+                    app:layout_constraintStart_toEndOf="@+id/Healthissues"
+                    app:layout_constraintTop_toTopOf="@+id/Healthissues"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/hintHealthIssues"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="Diabetes"
+                    android:inputType="textPersonName"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon3"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon3" />
+
+                <TextView
+                    android:id="@+id/AllergicTo"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Allergic To                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.041"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.327" />
+
+                <TextView
+                    android:id="@+id/semicolon4"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/AllergicTo"
+                    app:layout_constraintStart_toEndOf="@+id/AllergicTo"
+                    app:layout_constraintTop_toTopOf="@+id/AllergicTo"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/hintAllergicTo"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="Shrimp,Hilsha"
+                    android:inputType="textPersonName"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon4"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon4" />
+
+                <TextView
+                    android:id="@+id/Emergency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Emergency Contacts :"
+                    android:textColor="@color/purple_700"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.054"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/AllergicTo" />
+
+                <TextView
+                    android:id="@+id/Person1"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Person1                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.041"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.467" />
+
+                <TextView
+                    android:id="@+id/semicolon5"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/Person1"
+                    app:layout_constraintStart_toEndOf="@+id/Person1"
+                    app:layout_constraintTop_toTopOf="@+id/Person1"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/hintName1"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon5"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon5" />
+
+
+                <TextView
+                    android:id="@+id/ContactNo1"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Contact No                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.041"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.527" />
+
+                <TextView
+                    android:id="@+id/semicolon6"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/ContactNo1"
+                    app:layout_constraintStart_toEndOf="@+id/ContactNo1"
+                    app:layout_constraintTop_toTopOf="@+id/ContactNo1"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/hintMobileNo"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="01710..."
+                    android:inputType="phone"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon6"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon6" />
+
+
+                <TextView
+                    android:id="@+id/Person2"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Person2                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.037"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.591" />
+
+                <TextView
+                    android:id="@+id/semicolon7"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/Person2"
+                    app:layout_constraintStart_toEndOf="@+id/Person2"
+                    app:layout_constraintTop_toTopOf="@+id/Person2"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/hintName2"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon7"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon7" />
+
+
+                <TextView
+                    android:id="@+id/ContactNo2"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Contact No                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.037"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.657" />
+
+                <TextView
+                    android:id="@+id/semicolon8"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/ContactNo2"
+                    app:layout_constraintStart_toEndOf="@+id/ContactNo2"
+                    app:layout_constraintTop_toTopOf="@+id/ContactNo2"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/hintMobileNo2"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="01710..."
+                    android:inputType="phone"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon8"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon8" />
+
+
+                <TextView
+                    android:id="@+id/EmergencyMail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Emergency Mails :"
+                    android:textColor="@color/purple_700"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.042"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ContactNo2" />
+
+                <TextView
+                    android:id="@+id/Mail1"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Mail1                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.041"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.79" />
+
+                <TextView
+                    android:id="@+id/semicolon9"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/Mail1"
+                    app:layout_constraintStart_toEndOf="@+id/Mail1"
+                    app:layout_constraintTop_toTopOf="@+id/Mail1"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/Mail"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="prity@gmail.com"
+                    android:inputType="textPersonName"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon9"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon9" />
+
+                <TextView
+                    android:id="@+id/Mail2"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Mail2                             "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.041"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.851" />
+
+                <TextView
+                    android:id="@+id/semicolon10"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/Mail2"
+                    app:layout_constraintStart_toEndOf="@+id/Mail2"
+                    app:layout_constraintTop_toTopOf="@+id/Mail2"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/Mail3"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="prity@gmail.com"
+                    android:inputType="textPersonName"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/semicolon10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon10"
+                    app:layout_constraintTop_toTopOf="@+id/semicolon10" />
+
+                <TextView
+
+                    android:id="@+id/textView2"
+                    android:layout_width="130dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="4dp"
+                    android:text=" Others "
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.046"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.922" />
+
+                <TextView
+
+                    android:id="@+id/textView4"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="16dp"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                    app:layout_constraintEnd_toStartOf="@+id/Others"
+                    app:layout_constraintHorizontal_bias="0.166"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="@+id/Mail2"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <EditText
+                    android:id="@+id/Others"
+                    android:layout_width="202dp"
+                    android:layout_height="34dp"
+                    android:ems="10"
+                    android:hint="Anything"
+                    android:inputType="textMultiLine"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/semicolon10"
+                    app:layout_constraintTop_toTopOf="@+id/textView4"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </FrameLayout>
 
 
 
-</LinearLayout>
+    </LinearLayout>

@@ -104,9 +104,14 @@ public class Register extends AppCompatActivity {
                             userInfo.put("Age", "");
                             userInfo.put("Allergy", "");
                             userInfo.put("EmmergencyPerson", "");
+                            userInfo.put("EmmergencyPerson2", "");
                             userInfo.put("Health", "");
                             userInfo.put("Others", "");
                             userInfo.put("emmergencyContact", "");
+                            userInfo.put("emmergencyContact2", "");
+                            userInfo.put("emmergencyContactEmail", "");
+                            userInfo.put("emmergencyContactEmail2", "");
+                            userInfo.put("BloodGroup", "");
 
                             // specifying role
                             if (aged.isChecked())
