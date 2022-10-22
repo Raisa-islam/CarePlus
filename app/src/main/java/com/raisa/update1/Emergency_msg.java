@@ -19,7 +19,8 @@ public class Emergency_msg {
         this.msg = msg;
     }
 
-    public Emergency_msg(String msg) {
+    public Emergency_msg(String id, String msg) {
+        this.id = id;
         this.msg = msg;
     }
 

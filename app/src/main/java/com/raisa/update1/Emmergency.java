@@ -58,15 +58,15 @@ public class Emmergency extends AppCompatActivity {
 
 
 //************************************************************************************************************************************************
-    /*    rootRef.addValueEventListener(new ValueEventListener() {
+        rootRef.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
-                    Emergency_msg task = dataSnapshot.getValue(Emergency_msg.class);
-                    list.add(task);
+                    Emergency_msg msg = dataSnapshot.getValue(Emergency_msg.class);
+                    list.add(msg);
                 }
                 adapter.notifyDataSetChanged();
                 if(list.size()==0){
@@ -82,7 +82,7 @@ public class Emmergency extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });*/
+        });
         adapter = new E_adapter(this, list);
         recyclerView.setAdapter(adapter);
         FAB.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +145,7 @@ public class Emmergency extends AppCompatActivity {
     public void add_info(String s)
     {
         String id = rootRef.push().getKey();
-        rootRef.child(id).setValue(s);
+        Emergency_msg msg = new Emergency_msg(id, s);
+        rootRef.child(id).setValue(msg);
     }
 }
