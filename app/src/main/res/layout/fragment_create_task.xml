@@ -46,6 +46,10 @@
             android:alpha="0.8"
             android:textSize="18sp"
             tools:ignore="MissingPrefix" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/idTLTaskTitle"

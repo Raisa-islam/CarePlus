@@ -264,7 +264,7 @@ public class TaskList_card extends AppCompatActivity {
                           String wed, String thurs, String fri, String sat)
     {
         String id = rootRef.push().getKey();
-        Task task = new Task(title_add, description_add, hour, min, everyday, sun, mon, tues, wed, thurs, fri, sat);
+        Task task = new Task(id, title_add, description_add, hour, min, everyday, sun, mon, tues, wed, thurs, fri, sat);
         rootRef.child(id).setValue(task);
 
     }

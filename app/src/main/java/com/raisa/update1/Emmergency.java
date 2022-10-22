@@ -82,9 +82,9 @@ public class Emmergency extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
         adapter = new E_adapter(this, list);
-        recyclerView.setAdapter(adapter);*/
+        recyclerView.setAdapter(adapter);
         FAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

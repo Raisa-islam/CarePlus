@@ -110,9 +110,9 @@ public class Task {
         this.sat = sat;
     }
 
-    public Task(String title, String description, String hour, String min,
+    public Task(String id, String title, String description, String hour, String min,
                 String everyday, String sun, String mon, String tues, String wed, String thurs, String fri, String sat) {
-
+        this.id = id;
         this.title = title;
         this.description = description;
         this.hour = hour;
@@ -124,51 +124,6 @@ public class Task {
         this.wed = wed;
         this.thurs = thurs;
         this.fri = fri;
-        this.sat = this.sat;
+        this.sat = sat;
     }
 }
-// public String get_day(){
-//        String m = "";
-//        if(everyday)
-//        {
-//            m = "Everyday";
-//            return m;
-//        }
-//        if (sun)
-//        {
-//            String n = "S ";
-//            m += n;
-//        }
-//        if (mon)
-//        {
-//            String n = "M ";
-//            m += n;
-//        }
-//        if (tues)
-//        {
-//            String n = "T ";
-//            m += n;
-//        }
-//        if (wed)
-//        {
-//            String n = "W ";
-//            m += n;
-//        }
-//        if (thurs)
-//        {
-//            String n = "T ";
-//            m += n;
-//        }
-//        if (fri)
-//        {
-//            String n = "F ";
-//            m += n;
-//        }
-//        if (sat)
-//        {
-//            String n = "S ";
-//            m += n;
-//        }
-//
-//        return m;
-//    }
