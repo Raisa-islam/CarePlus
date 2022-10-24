@@ -1,4 +1,4 @@
-package com.raisa.update1;
+package com.raisa.update1.object;
 
 public class Emergency_msg {
     String id, msg;

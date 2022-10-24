@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +17,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.raisa.update1.Card.Basic_info_card;
+import com.raisa.update1.Card.Calender_card;
+import com.raisa.update1.Card.Member_card;
+import com.raisa.update1.Card.TaskList_card;
+import com.raisa.update1.Card.settings_card;
 
 public class MainActivity2 extends AppCompatActivity {
     CardView task, basic_info, settings, log_out, member, calender, emmergency;

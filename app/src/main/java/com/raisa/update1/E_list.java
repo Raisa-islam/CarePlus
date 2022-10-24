@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.raisa.update1.object.Emergency_msg;
+
 import java.util.List;
 
 public class E_list extends ArrayAdapter<Emergency_msg> {

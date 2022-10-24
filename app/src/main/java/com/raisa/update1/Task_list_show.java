@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.raisa.update1.object.Task;
+
 import java.util.List;
 
 public class Task_list_show extends ArrayAdapter<Task> {

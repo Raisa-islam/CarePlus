@@ -1,4 +1,4 @@
-package com.raisa.update1;
+package com.raisa.update1.Card;
 
 import static com.raisa.update1.GlobalVariable.contacNo;
 
@@ -9,7 +9,6 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.raisa.update1.GlobalVariable;
+import com.raisa.update1.R;
 
 import java.util.HashMap;
 import java.util.Map;

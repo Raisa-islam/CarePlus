@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Calender_card"
+            android:name=".Card.Calender_card"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -68,16 +68,16 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Member_card"
+            android:name=".Card.Member_card"
             android:exported="false" />
         <activity
-            android:name=".settings_card"
+            android:name=".Card.settings_card"
             android:exported="false" />
         <activity
-            android:name=".Basic_info_card"
+            android:name=".Card.Basic_info_card"
             android:exported="false" />
         <activity
-            android:name=".TaskList_card"
+            android:name=".Card.TaskList_card"
             android:exported="false" />
         <activity
             android:name=".TaskList"
