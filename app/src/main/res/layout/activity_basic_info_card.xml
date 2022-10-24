@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <EditText
+                    <TextView
                         android:id="@+id/TVname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                         android:background="@android:color/transparent"
                         android:textSize="16sp"
                         android:textStyle="bold" />
-                    <EditText
+                    <TextView
                         android:id="@+id/TVEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                     app:layout_constraintTop_toTopOf="@+id/Name"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/hintName"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -143,6 +143,7 @@
                     android:hint="Name"
                     android:inputType="textPersonName"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon"
@@ -179,7 +180,7 @@
                     app:layout_constraintTop_toTopOf="@+id/Age"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/hintAge"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -187,6 +188,7 @@
                     android:hint="Age"
                     android:inputType="number"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon1"
@@ -223,7 +225,7 @@
                     app:layout_constraintTop_toTopOf="@+id/BloodGroup"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/hintBloodGroup"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -231,6 +233,7 @@
                     android:hint="A+,B+,O+.."
                     android:inputType="textPersonName"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon2"
@@ -241,7 +244,7 @@
                     android:layout_width="130dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="4dp"
-                    android:text=" Health Issues                             "
+                    android:text=" Health Issues"
                     android:textColor="@color/black"
                     android:textSize="17dp"
                     android:textStyle="bold"
@@ -266,7 +269,7 @@
                     app:layout_constraintTop_toTopOf="@+id/Healthissues"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/hintHealthIssues"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -274,6 +277,7 @@
                     android:hint="Diabetes"
                     android:inputType="textPersonName"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon3"
@@ -309,7 +313,7 @@
                     app:layout_constraintTop_toTopOf="@+id/AllergicTo"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/hintAllergicTo"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -317,6 +321,7 @@
                     android:hint="Shrimp,Hilsha"
                     android:inputType="textPersonName"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon4"
@@ -329,6 +334,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="Emergency Contacts :"
+
                     android:textColor="@color/purple_700"
                     android:textSize="17dp"
                     android:textStyle="bold"
@@ -367,7 +373,7 @@
                     app:layout_constraintTop_toTopOf="@+id/Person1"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/hintName1"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -375,6 +381,7 @@
                     android:hint="Name"
                     android:inputType="textPersonName"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon5"
@@ -411,12 +418,13 @@
                     app:layout_constraintTop_toTopOf="@+id/ContactNo1"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/hintMobileNo"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
                     android:ems="10"
                     android:hint="01710..."
+                    android:textColor="@color/black"
                     android:inputType="phone"
                     android:textSize="13dp"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon6"
@@ -455,7 +463,7 @@
                     app:layout_constraintTop_toTopOf="@+id/Person2"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/hintName2"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -463,6 +471,7 @@
                     android:hint="Name"
                     android:inputType="textPersonName"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon7"
@@ -499,7 +508,7 @@
                     app:layout_constraintTop_toTopOf="@+id/ContactNo2"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/hintMobileNo2"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -507,6 +516,7 @@
                     android:hint="01710..."
                     android:inputType="phone"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon8"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon8"
@@ -558,7 +568,7 @@
                     app:layout_constraintTop_toTopOf="@+id/Mail1"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/Mail"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -566,6 +576,7 @@
                     android:hint="prity@gmail.com"
                     android:inputType="textPersonName"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon9"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon9"
@@ -576,7 +587,7 @@
                     android:layout_width="130dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="4dp"
-                    android:text=" Mail2                             "
+                    android:text=" Mail2"
                     android:textColor="@color/black"
                     android:textSize="17dp"
                     android:textStyle="bold"
@@ -601,7 +612,7 @@
                     app:layout_constraintTop_toTopOf="@+id/Mail2"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/Mail3"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -609,6 +620,7 @@
                     android:hint="prity@gmail.com"
                     android:inputType="textPersonName"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/semicolon10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon10"
@@ -648,7 +660,7 @@
                     app:layout_constraintTop_toTopOf="@+id/Mail2"
                     app:layout_constraintVertical_bias="1.0" />
 
-                <EditText
+                <TextView
                     android:id="@+id/Others"
                     android:layout_width="202dp"
                     android:layout_height="34dp"
@@ -656,6 +668,7 @@
                     android:hint="Anything"
                     android:inputType="textMultiLine"
                     android:textSize="13dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/textView4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/semicolon10"

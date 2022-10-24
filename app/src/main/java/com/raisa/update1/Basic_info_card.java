@@ -34,8 +34,8 @@ import java.util.Map;
 public class Basic_info_card extends AppCompatActivity {
     ImageView edit_info;
     TextView info;
-    EditText Name, email;
-    EditText name, age, allergy, EPerson, health, others, contact, bg, EPerson2, contact2, mail1, mail2;
+    TextView Name, email;
+    TextView name, age, allergy, EPerson, health, others, contact, bg, EPerson2, contact2, mail1, mail2;
     FirebaseFirestore db;
 
     @Override
