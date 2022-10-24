@@ -22,6 +22,8 @@ import com.raisa.update1.Card.Calender_card;
 import com.raisa.update1.Card.Member_card;
 import com.raisa.update1.Card.TaskList_card;
 import com.raisa.update1.Card.settings_card;
+import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.start.LogIn;
 
 public class MainActivity2 extends AppCompatActivity {
     CardView task, basic_info, settings, log_out, member, calender, emmergency;

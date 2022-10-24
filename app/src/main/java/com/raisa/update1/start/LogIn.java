@@ -1,4 +1,4 @@
-package com.raisa.update1;
+package com.raisa.update1.start;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +20,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.MainActivity2;
+import com.raisa.update1.MainActivity3;
+import com.raisa.update1.R;
 
 public class LogIn extends AppCompatActivity {
     TextView createnewAccount, fprgotPassward;
@@ -50,7 +54,7 @@ public class LogIn extends AppCompatActivity {
         createnewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LogIn.this,Register.class));
+                startActivity(new Intent(LogIn.this, Register.class));
             }
         });
 

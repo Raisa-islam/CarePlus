@@ -1,4 +1,4 @@
-package com.raisa.update1;
+package com.raisa.update1.Constants;
 
 public class GlobalVariable {
     public static String UserName;

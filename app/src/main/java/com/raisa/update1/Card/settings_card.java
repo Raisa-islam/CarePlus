@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.EditText;
 
-import com.raisa.update1.GlobalVariable;
+import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 
 public class settings_card extends AppCompatActivity {

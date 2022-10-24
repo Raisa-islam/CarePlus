@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.raisa.update1.GlobalVariable;
+import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 
 public class Calender_card extends AppCompatActivity {

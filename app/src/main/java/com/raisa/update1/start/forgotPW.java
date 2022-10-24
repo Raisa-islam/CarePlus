@@ -1,4 +1,4 @@
-package com.raisa.update1;
+package com.raisa.update1.start;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.raisa.update1.R;
 
 public class forgotPW extends AppCompatActivity {
     EditText email;

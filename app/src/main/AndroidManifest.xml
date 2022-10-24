@@ -34,14 +34,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".forgotPW"
+            android:name=".start.forgotPW"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".splash"
+            android:name=".start.splash"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -54,14 +54,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Register"
+            android:name=".start.Register"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LogIn"
+            android:name=".start.LogIn"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -1,4 +1,4 @@
-package com.raisa.update1;
+package com.raisa.update1.start;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +19,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.raisa.update1.MainActivity2;
+import com.raisa.update1.MainActivity3;
+import com.raisa.update1.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -152,7 +154,7 @@ public class Register extends AppCompatActivity {
         alreadyHaveaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Register.this,LogIn.class));
+                startActivity(new Intent(Register.this, LogIn.class));
             }
         });
     }

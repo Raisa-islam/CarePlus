@@ -1,6 +1,6 @@
 package com.raisa.update1.Card;
 
-import static com.raisa.update1.GlobalVariable.contacNo;
+import static com.raisa.update1.Constants.GlobalVariable.contacNo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +26,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.raisa.update1.GlobalVariable;
+import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 
 import java.util.HashMap;

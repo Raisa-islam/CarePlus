@@ -1,4 +1,4 @@
-package com.raisa.update1;
+package com.raisa.update1.start;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
+import com.raisa.update1.R;
 
 public class splash extends AppCompatActivity {
     TextView wel,learning;
