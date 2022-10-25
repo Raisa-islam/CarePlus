@@ -15,7 +15,7 @@ import com.raisa.update1.object.Member;
 
 import java.util.List;
 
-public class MemberFindShow extends ArrayAdapter<Member> {
+public class MemberListShow extends ArrayAdapter<Member> {
     private Activity context;
     private List<Member> taskList;
 
@@ -41,7 +41,7 @@ public class MemberFindShow extends ArrayAdapter<Member> {
 
         return listViewItem;
     }
-    public MemberFindShow(Activity context, List<Member>taskList)
+    public MemberListShow(Activity context, List<Member>taskList)
     {
         super(context, R.layout.member_list, taskList);
         this.context = context;

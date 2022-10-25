@@ -1,14 +1,26 @@
 package com.raisa.update1.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.raisa.update1.Card.Calender_card;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 import com.raisa.update1.object.Event;
@@ -41,7 +54,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EventListAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Event task = list.get(position);
         holder.title.setText(task.getTitle());
         holder.description.setText(task.getDescription());
@@ -98,7 +111,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         {
             mon += "Dec";
         }
-        holder.month.setText(mon);
+        holder.month.setText(mon);//***************************************************month kn show kre na
 
 
         holder.menu.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +136,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
                                 break;
                             case R.id.menuUpdate:
-                                //showUpdateDialog(task);
+                               showUpdateTaskeDialog(task);
 
                                 break;
                             case R.id.menuComplete:
@@ -164,7 +177,92 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
         }
     }
+    private void showUpdateTaskeDialog(Event event) {
 
+
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.create_event);
+
+        EditText title = dialog.findViewById(R.id.idEdtTask);
+        EditText description = dialog.findViewById(R.id.idEdtTaskDescription);
+        Button add = dialog.findViewById(R.id.addTask);
+
+        TimePicker timePicker = dialog.findViewById(R.id.SelectTime);
+        DatePicker datePicker = dialog.findViewById(R.id.SelectDate);
+        final int[] hour = new int[1];
+        final int[] min = new int[1];
+        final int[] year = new int[1];
+        final int[] month = new int[1];
+        final int[] day = new int[1];
+
+        title.setText(event.getTitle());
+        description.setText(event.getDescription());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.setMinute(Integer.parseInt(event.getMin()));
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.setHour(Integer.parseInt(event.getHour()));
+        }
+        //**************************************************************************** kivabe date picker e date set krb
+
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
+
+                hour[0] = i;
+                min[0] = i1;
+
+
+            }
+        });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            datePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+                @Override
+                public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
+                    year[0]=i;
+                    month[0] = i1+1;
+                    day[0] = i2;
+                }
+            });
+        }
+
+
+        dialog.show();
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String t = title.getText().toString().trim();
+                String d = description.getText().toString().trim();
+
+                String y = Integer.toString(year[0]);
+                String m = Integer.toString(month[0]);
+                String da = Integer.toString(day[0]);
+
+                String h = Integer.toString(hour[0]);
+                String mi = Integer.toString(min[0]);
+
+                if(!TextUtils.isEmpty(t)||!TextUtils.isEmpty(d) )
+                {
+
+                    //addInfo(t, d, da,m,y, h, m);
+                }
+                else {
+                    Toast.makeText(context, "Please fill all the fields...", Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            }
+        });
+
+
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+    }
     public void  deleteTaskFromId(String id, int position)
     {
         delete(id);

@@ -19,27 +19,5 @@ public class Member_card extends AppCompatActivity {
         setContentView(R.layout.activity_member_card);
     }
 
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.search, menu);
 
-        MenuItem menuItem = menu.findItem(R.id.find_member);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Search here");
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
-
-
-    }
 }

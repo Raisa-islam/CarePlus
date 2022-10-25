@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 import com.raisa.update1.Views.DayViewCheckBox;
+import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Task;
 
 import java.util.ArrayList;
@@ -132,7 +133,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
                                 AlertDialog.Builder completeAlertDialog = new AlertDialog.Builder(context, R.style.AppTheme_Dialog);
                                 completeAlertDialog.setTitle(R.string.confirmation).setMessage(R.string.sureToMarkAsComplete).
                                         setPositiveButton(R.string.yes, (dialog, which) ->
-                                                showCompleteDialog(task.getId(), position))
+                                                showCompleteDialog(task.getId(), task.getTitle(), position))
                                         .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel()).show();
                               //  Toast.makeText(context, "Complete pressed Inner part is remain", Toast.LENGTH_SHORT).show();
                                 holder.status.setText("COMPLETED");
@@ -388,17 +389,25 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
         Toast.makeText(context, "Task updated", Toast.LENGTH_SHORT).show();
 
     }
-    public void showCompleteDialog(String taskId, int position) {
+    public void showCompleteDialog(String taskId, String taskTitle, int position) {
         Dialog dialog = new Dialog(context, R.style.AppTheme);
         dialog.setContentView(R.layout.dialog_completed_theme);
         Button close = dialog.findViewById(R.id.closeButton);
         close.setOnClickListener(view -> {
             //deleteTaskFromId(taskId, position);
-
+            Update_in_fb(taskTitle);
             dialog.dismiss();
         });
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
+    }
+    public void Update_in_fb(String title)
+    {
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Update");
+        String done = GlobalVariable.UserName + " have completed " + title+"!";
+        String id = rootRef.push().getKey();
+        Emergency_msg update = new Emergency_msg(id, done);                                                                       // new cls intentionally create kri nai
+        rootRef.child(id).setValue(update);
     }
     public void  deleteTaskFromId(String id, int position)
     {

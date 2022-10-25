@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -86,7 +87,7 @@ public class Basic_info_card extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        TextView save = dialog.findViewById(R.id.SaveInfo);
+        Button save = dialog.findViewById(R.id.SaveInfo);
         EditText name, age, health, allergy, ePerson, eContact, others, bloodGroup, email1, email2, ePerson2, econtact2;
         name = dialog.findViewById(R.id.idEdtName);
         age = dialog.findViewById(R.id.idEdtAge);

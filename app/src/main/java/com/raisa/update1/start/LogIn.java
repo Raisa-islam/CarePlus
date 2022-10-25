@@ -29,6 +29,7 @@ public class LogIn extends AppCompatActivity {
     TextView createnewAccount, fprgotPassward;
     EditText email, password;
     Button login;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a_z]+\\.+[a-z]+" ;
 
     boolean valid = true;
     FirebaseAuth firebaseAuth;
@@ -61,27 +62,38 @@ public class LogIn extends AppCompatActivity {
        login.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               /*if(Integer.parseInt(email.getText().toString())==1)
-               {
-                   startActivity(new Intent(LogIn.this,MainActivity2.class));
+               String email1=email.getText().toString();
+               String password1=password.getText().toString();
+
+               /*if(!email1.matches(emailPattern)){
+                   email.setError("Enter Correct Email");           //*************************************************************************
+                   email.requestFocus();
+                   return;
+
+               }*/
+               if(password1.isEmpty() || password1.length()<6){
+
+                   password.setError("Enter Proper Password");
+                   password.requestFocus();
+                   return;
+
                }
                else{
-                   startActivity(new Intent(LogIn.this,MainActivity3.class));
-               }*/
-                checkField(email);
-                checkField(password);
-               firebaseAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                   @Override
-                   public void onSuccess(AuthResult authResult) {
-                       Toast.makeText(LogIn.this, "Loggedin Successfully", Toast.LENGTH_SHORT).show();
-                       checkUserAccessLevel(authResult.getUser().getUid());
-                   }
-               }).addOnFailureListener(new OnFailureListener() {
-                   @Override
-                   public void onFailure(@NonNull Exception e) {
-                       Toast.makeText(LogIn.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                   }
-               });
+                   firebaseAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                       @Override
+                       public void onSuccess(AuthResult authResult) {
+                           Toast.makeText(LogIn.this, "Loggedin Successfully", Toast.LENGTH_SHORT).show();
+                           checkUserAccessLevel(authResult.getUser().getUid());
+                       }
+                   }).addOnFailureListener(new OnFailureListener() {
+                       @Override
+                       public void onFailure(@NonNull Exception e) {
+                           Toast.makeText(LogIn.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                       }
+                   });
+               }
+
+
            }
        });
 

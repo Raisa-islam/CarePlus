@@ -1,12 +1,15 @@
 package com.raisa.update1.Card;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -28,6 +31,8 @@ import com.raisa.update1.adapter.E_adapter;
 import com.raisa.update1.object.Emergency_msg;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Objects;
 
 public class Emmergency extends AppCompatActivity {
     FloatingActionButton FAB;
@@ -35,8 +40,15 @@ public class Emmergency extends AppCompatActivity {
     E_adapter adapter;
     ArrayList<Emergency_msg> list;
     EditText message;
-    ImageView send;
-    private DatabaseReference rootRef;
+    ImageView send, mic;
+    EditText msg;
+    private DatabaseReference rootRef, rootRef2;
+    private static final int REQUEST_CODE_SPEECH_INPUT = 1;
+    private static final int REQUEST_CODE_SPEECH_INPUT2 = 2;
+    String s;
+
+
+    //#0099CC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +56,13 @@ public class Emmergency extends AppCompatActivity {
         setContentView(R.layout.activity_emmergency);
 
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("EmmergencyMessage");
+        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Update");
 
         FAB = findViewById(R.id.Floating_icon);
         message = findViewById(R.id.EDTMSG);
         send = findViewById(R.id.idSend);
+        msg = findViewById(R.id.EDTMSG);
+        mic = findViewById(R.id.Mic);
 
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -55,9 +70,41 @@ public class Emmergency extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
+        mic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent
+                        = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+                        Locale.getDefault());
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text");
 
+                try {
+                    startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT);
+                }
+                catch (Exception e) {
+                    Toast
+                            .makeText(Emmergency.this, " " + e.getMessage(),
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+        });
 
 //************************************************************************************************************************************************
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String m = msg.getText().toString();
+                String done = "!!! "+ GlobalVariable.UserName + " need " + m+"!!!";
+                String id = rootRef.push().getKey();
+                Emergency_msg update = new Emergency_msg(id, done);                      // new cls intentionally create kri nai
+                rootRef2.child(id).setValue(update);
+
+            }
+        });
         rootRef.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -106,10 +153,34 @@ public class Emmergency extends AppCompatActivity {
 
         EditText title = dialog.findViewById(R.id.idEdtMSG);
         Button save = dialog.findViewById(R.id.idBtnSave);
+        ImageView miic = dialog.findViewById(R.id.Mic_new);
         Button cancel = dialog.findViewById(R.id.idBtnCancel);
 
 
+        miic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent
+                        = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+                        Locale.getDefault());
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text");
 
+                try {
+                    startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT2);
+                    title.setText(text2());                                              //having mic problem
+                }
+                catch (Exception e) {
+                    Toast
+                            .makeText(Emmergency.this, " " + e.getMessage(),
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                }
+
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +204,7 @@ public class Emmergency extends AppCompatActivity {
 
             }
         });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,4 +220,33 @@ public class Emmergency extends AppCompatActivity {
         Emergency_msg msg = new Emergency_msg(id, s);
         rootRef.child(id).setValue(msg);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SPEECH_INPUT) {
+            if (resultCode == RESULT_OK && data != null) {
+                ArrayList<String> result = data.getStringArrayListExtra(
+                        RecognizerIntent.EXTRA_RESULTS);
+                msg.setText(
+                        Objects.requireNonNull(result).get(0));
+            }
+        }
+        if (requestCode == REQUEST_CODE_SPEECH_INPUT2) {
+            if (resultCode == RESULT_OK && data != null) {
+                ArrayList<String> result = data.getStringArrayListExtra(
+                        RecognizerIntent.EXTRA_RESULTS);
+                //mic_dialog(Objects.requireNonNull(result).get(0));
+                text(Objects.requireNonNull(result).get(0));
+
+            }
+        }
+    }
+    public void text(String m){
+        s = m;
+    }
+    public String text2(){
+        return s;
+    }
+
 }

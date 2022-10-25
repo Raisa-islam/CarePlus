@@ -36,6 +36,7 @@ public class Register extends AppCompatActivity {
     boolean valid = true;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
+    String emailPattern ="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";// "[a-zA-Z0-9._-]+@[a_z]+\\.+[a-z]" ;//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +81,41 @@ public class Register extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkField(Name);
-                checkField(email);
-                checkField(password);
-                checkField(confirmPW);
+                String email1 = email.getText().toString();
+                String password1=password.getText().toString();
+                String confirmPassword=confirmPW.getText().toString();
+                String name = Name.getText().toString();
+
+                if(name.isEmpty()){
+                    Name.setError("Name is required");
+                    Name.requestFocus();
+                    return;
+
+                }
+                if(email1.isEmpty()){
+                    email.setError("Email is required");
+                    email.requestFocus();
+                    return;
+
+                }
+                /*if(!email1.matches(emailPattern)){
+                    email.setError("Enter Correct Email");       //*******************************************************************************************
+                    email.requestFocus();
+                    return;
+
+                }*/
+                if(password1.isEmpty() || password1.length()<6){
+
+                    password.setError("Enter Proper Password");
+                    password.requestFocus();
+                    return;
+
+                }
+                if(!password1.equals(confirmPassword)){
+                    confirmPW.setError("Password doesn't match both fields");
+                    confirmPW.requestFocus();
+                    return;
+                }
 
                 //****************************************
                 if (!(aged.isChecked() || caregiver.isChecked()))
@@ -92,7 +124,7 @@ public class Register extends AppCompatActivity {
                     return;
                 }
                 //****************************************************************************************************** password and confirm password check
-                if(valid)
+                else
                 {
                     firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
@@ -114,7 +146,7 @@ public class Register extends AppCompatActivity {
                             userInfo.put("emmergencyContactEmail", "");
                             userInfo.put("emmergencyContactEmail2", "");
                             userInfo.put("BloodGroup", "");
-
+                            userInfo.put("id", user.getUid());
                             // specifying role
                             if (aged.isChecked())
                             {
@@ -159,14 +191,5 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    public boolean checkField(EditText textField){
-        if (textField.getText().toString().isEmpty()){
-            textField.setError("Error");
-            valid = false;
-        }
-        else {
-            valid = true;
-        }
-        return valid;
-    }
+
 }
