@@ -53,16 +53,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <ImageView
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:id="@+id/noDataImage"
-                android:layout_gravity="center"/>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/taskRecycler"/>
+                tools:listitem="@layout/rv_event_card"
+                android:id="@+id/eventRecycler"/>
 
         </FrameLayout>
 

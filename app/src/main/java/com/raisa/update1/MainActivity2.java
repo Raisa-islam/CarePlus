@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Card.Basic_info_card;
 import com.raisa.update1.Card.Calender_card;
+import com.raisa.update1.Card.Emmergency;
 import com.raisa.update1.Card.Member_card;
 import com.raisa.update1.Card.TaskList_card;
 import com.raisa.update1.Card.settings_card;

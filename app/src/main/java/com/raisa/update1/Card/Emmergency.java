@@ -1,4 +1,4 @@
-package com.raisa.update1;
+package com.raisa.update1.Card;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.R;
 import com.raisa.update1.adapter.E_adapter;
 import com.raisa.update1.object.Emergency_msg;
 

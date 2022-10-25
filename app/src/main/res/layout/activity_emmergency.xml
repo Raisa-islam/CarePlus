@@ -8,7 +8,7 @@
     android:paddingTop="10dp"
     android:paddingRight="10dp"
     android:paddingBottom="10dp"
-    tools:context=".Emmergency">
+    tools:context=".Card.Emmergency">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

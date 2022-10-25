@@ -1,4 +1,4 @@
-package com.raisa.update1;
+package com.raisa.update1.listShow;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.raisa.update1.R;
 import com.raisa.update1.object.Member;
 
 import java.util.List;

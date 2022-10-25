@@ -1,5 +1,7 @@
 package com.raisa.update1.adapter;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -12,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -53,7 +56,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Task task = list.get(position);
         holder.title.setText(task.getTitle());
         holder.description.setText(task.getDescription());
@@ -112,7 +115,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
                         switch (menuItem.getItemId())
                         {
                             case R.id.menuDelete:
-                                delete(task.getId());
+                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context, R.style.AppTheme_Dialog);
+                                alertDialogBuilder.setTitle(R.string.delete_confirmation).setMessage(R.string.sureToDelete).
+                                        setPositiveButton(R.string.yes, (dialog, which) -> {
+                                            deleteTaskFromId(task.getId(), position);
+                                        })
+                                        .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel()).show();
+
 
                                 break;
                             case R.id.menuUpdate:
@@ -120,8 +129,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
 
                                 break;
                             case R.id.menuComplete:
-                                Toast.makeText(context, "Complete pressed Inner part is remain", Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder completeAlertDialog = new AlertDialog.Builder(context, R.style.AppTheme_Dialog);
+                                completeAlertDialog.setTitle(R.string.confirmation).setMessage(R.string.sureToMarkAsComplete).
+                                        setPositiveButton(R.string.yes, (dialog, which) ->
+                                                showCompleteDialog(task.getId(), position))
+                                        .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel()).show();
+                              //  Toast.makeText(context, "Complete pressed Inner part is remain", Toast.LENGTH_SHORT).show();
                                 holder.status.setText("COMPLETED");
+
                                 break;
                         }
                         return false;
@@ -160,12 +175,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
             //age = itemView.findViewById(R.id.Age);
         }
     }
-    private void delete(String key)
-    {
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks").child(key);
-        rootRef.removeValue();
-        Toast.makeText(context, "Task deleted", Toast.LENGTH_SHORT).show();
-    }
+
     private void showUpdateDialog(Task task)
     {
         final Dialog dialog = new Dialog(context);
@@ -377,5 +387,28 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
         rootRef.child(id).setValue(task);
         Toast.makeText(context, "Task updated", Toast.LENGTH_SHORT).show();
 
+    }
+    public void showCompleteDialog(String taskId, int position) {
+        Dialog dialog = new Dialog(context, R.style.AppTheme);
+        dialog.setContentView(R.layout.dialog_completed_theme);
+        Button close = dialog.findViewById(R.id.closeButton);
+        close.setOnClickListener(view -> {
+            //deleteTaskFromId(taskId, position);
+
+            dialog.dismiss();
+        });
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+    }
+    public void  deleteTaskFromId(String id, int position)
+    {
+        delete(id);
+
+    }
+    private void delete(String key)
+    {
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks").child(key);
+        rootRef.removeValue();
+        Toast.makeText(context, "Task deleted", Toast.LENGTH_SHORT).show();
     }
 }
