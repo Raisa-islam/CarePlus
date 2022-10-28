@@ -16,7 +16,7 @@ import com.raisa.update1.object.Model;
 
 import java.util.List;
 
-public class MemberListShow extends ArrayAdapter<Model> {
+public class MemberReqListShow extends ArrayAdapter<Model> {
     private Activity context;
     private List<Model> taskList;
 
@@ -32,6 +32,8 @@ public class MemberListShow extends ArrayAdapter<Model> {
         TextView sendRequest = listViewItem.findViewById(R.id.sendRequest);
 
 
+
+
         Model task = taskList.get(position);
         Name.setText(task.getEmail());
         Email.setText(task.getName());
@@ -40,7 +42,7 @@ public class MemberListShow extends ArrayAdapter<Model> {
 
         return listViewItem;
     }
-    public MemberListShow(Activity context, List<Model>taskList)
+    public MemberReqListShow(Activity context, List<Model>taskList)
     {
         super(context, R.layout.member_list, taskList);
         this.context = context;

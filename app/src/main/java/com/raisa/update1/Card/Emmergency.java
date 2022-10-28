@@ -55,8 +55,8 @@ public class Emmergency extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_emmergency);
 
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("EmmergencyMessage");
-        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Update");
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Email).child("EmmergencyMessage");
+        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Email).child("Update");
 
         FAB = findViewById(R.id.Floating_icon);
         message = findViewById(R.id.EDTMSG);

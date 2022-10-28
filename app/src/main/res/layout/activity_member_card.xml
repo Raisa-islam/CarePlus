@@ -21,10 +21,11 @@
    </FrameLayout>
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
         android:layout_gravity="center">
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/MemListRV"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_height="300dp"
@@ -50,18 +51,31 @@
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="310dp"
         android:layout_gravity="center">
 
 
 
             <androidx.recyclerview.widget.RecyclerView
-
+                android:id="@+id/MemReqRV"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:layout_gravity="center"
-                tools:listitem="@layout/member_list"/>
+                tools:listitem="@layout/member_list_request"/>
 
+
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="23dp">
+        <TextView
+            android:id="@+id/FindMemberPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find Member?"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
 
     </FrameLayout>
 </LinearLayout>

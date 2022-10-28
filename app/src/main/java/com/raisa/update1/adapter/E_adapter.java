@@ -37,7 +37,7 @@ public class E_adapter extends RecyclerView.Adapter<E_adapter.MyViewHolder> {
 public E_adapter(Context context, ArrayList<Emergency_msg> list) {
         this.context = context;
         this.list = list;
-        }
+}
 
 @NonNull
 @Override

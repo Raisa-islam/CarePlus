@@ -19,11 +19,17 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.MainActivity2;
 import com.raisa.update1.MainActivity3;
 import com.raisa.update1.R;
+import com.raisa.update1.object.Emergency_msg;
+import com.raisa.update1.object.Member;
+import com.raisa.update1.object.Model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +42,7 @@ public class Register extends AppCompatActivity {
     boolean valid = true;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
+    private DatabaseReference rootRef;
     String emailPattern ="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";// "[a-zA-Z0-9._-]+@[a_z]+\\.+[a-z]" ;//
 
     @Override
@@ -46,6 +53,7 @@ public class Register extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+        rootRef = FirebaseDatabase.getInstance().getReference().child("UserList");
 
 
         alreadyHaveaccount=findViewById(R.id.alreadyHaveaccount);
@@ -132,6 +140,9 @@ public class Register extends AppCompatActivity {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             Toast.makeText(Register.this, "Account Created!", Toast.LENGTH_SHORT).show();
                             DocumentReference df = firestore.collection("Users").document(user.getUid());
+                            String id = rootRef.push().getKey();
+                            Model msg = new Model(id, user.getUid(), Name.getText().toString(), email.getText().toString());
+                            rootRef.child(id).setValue(msg);
                             Map<String, Object> userInfo = new HashMap<>();
                             userInfo.put("Name", Name.getText().toString());
                             userInfo.put("UserEmail", email.getText().toString());
