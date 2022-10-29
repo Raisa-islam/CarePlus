@@ -108,14 +108,14 @@ public class Member_card extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
+                listReq.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
                     Model member = dataSnapshot.getValue(Model.class);
-                    list.add(member);
+                    listReq.add(member);
                 }
                 adapter.notifyDataSetChanged();
-                if(list.size()==0){
+                if(listReq.size()==0){
 
                 }
                 else{
@@ -129,6 +129,8 @@ public class Member_card extends AppCompatActivity {
 
             }
         });
+        adapterReq = new MemberReqAdapter(this, listReq);
+        recyclerViewReq.setAdapter(adapterReq);
     }
 
 
