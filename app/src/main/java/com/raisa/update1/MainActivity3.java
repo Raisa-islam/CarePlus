@@ -1,60 +1,113 @@
 package com.raisa.update1;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Menu;
-import android.view.WindowManager;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.start.LogIn;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.raisa.update1.databinding.ActivityMain3Binding;
 
-public class MainActivity3 extends AppCompatActivity {
-
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMain3Binding binding;
+public class MainActivity3 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private DrawerLayout drawer;
+    TextView name, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_main3);
 
-        binding = ActivityMain3Binding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        setSupportActionBar(binding.appBarMain.toolbar);
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_TaskList, R.id.nav_Calender,R.id.nav_Add,R.id.nav_Loc,R.id.nav_about_us,R.id.nav_rate_us,R.id.action_settings)
-                .setOpenableLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        drawer = findViewById(R.id.drawer_layout);
+
+        NavigationView navigationView =findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        if(savedInstanceState==null){
+//            name = findViewById(R.id.Uname);
+//            email = findViewById(R.id.Uemail);
+//            name.setText(GlobalVariable.UserName);
+//            email.setText(GlobalVariable.Email);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);}
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_activity3, menu);
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        name = findViewById(R.id.Uname);
+        email = findViewById(R.id.Uemail);
+        name.setText(GlobalVariable.UserName);
+        email.setText(GlobalVariable.Email);
+        switch(item.getItemId()){
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+                break;
+
+
+            case R.id.nav_task:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DailyTaskListFragment()).commit();
+                break;
+
+
+            case R.id.nav_calender:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CalenderFragment()).commit();
+                break;
+
+
+
+            case R.id.nav_member:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AddMemberFragment()).commit();
+                break;
+
+
+            case R.id.nav_about:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AboutUsFragment()).commit();
+                break;
+
+
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
+                break;
+
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(MainActivity3.this, LogIn.class);
+                startActivity(i);
+                finish();
+                Toast.makeText(MainActivity3.this, "Logged out!", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    public void onBackPressed() {
+
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 }

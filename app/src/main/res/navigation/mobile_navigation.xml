@@ -29,11 +29,7 @@
         android:name="com.raisa.update1.ui.addmember.AddMemberFragment"
         android:label="@string/menu_addmember"
         tools:layout="@layout/fragment_add_member" />
-    <fragment
-        android:id="@+id/nav_Loc"
-        android:name="com.raisa.update1.ui.location.LocationFragment"
-        android:label="@string/menu_location"
-        tools:layout="@layout/fragment_location2" />
+
     <fragment
         android:id="@+id/nav_about_us"
         android:name="com.raisa.update1.ui.about.AboutFragment"
