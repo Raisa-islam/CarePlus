@@ -10,6 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 import com.raisa.update1.object.Member;
 import com.raisa.update1.object.Model;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 
 public class MemberReqAdapter extends RecyclerView.Adapter<MemberReqAdapter.MyViewHolder>{
     Context context;
+    private DatabaseReference rootRef, rootRef2;
 
     ArrayList<Model> list;
 
@@ -43,8 +47,8 @@ public class MemberReqAdapter extends RecyclerView.Adapter<MemberReqAdapter.MyVi
         holder.sendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendRequest();
-                Toast.makeText(context, "request accept part is yet to complete", Toast.LENGTH_SHORT).show();
+                AcceptRequest(member);
+
             }
         });
     }
@@ -66,7 +70,13 @@ public class MemberReqAdapter extends RecyclerView.Adapter<MemberReqAdapter.MyVi
 
         }
     }
-    public void sendRequest(){
-
+    public void AcceptRequest(Model model){
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
+        String id = rootRef.push().getKey();
+        Model member = new Model(id, model.getKey(), model.getName(), model.getEmail());
+        rootRef.child(id).setValue(member);
+        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest").child(model.getId());
+        rootRef2.removeValue();
+        Toast.makeText(context, "Request Accepted!", Toast.LENGTH_SHORT).show();
     }
 }

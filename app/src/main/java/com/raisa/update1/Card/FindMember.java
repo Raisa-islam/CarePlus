@@ -58,8 +58,17 @@ public class FindMember extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     Model msg = dataSnapshot.getValue(Model.class);
-                    list.add(msg);
+                    if (msg.getEmail()==GlobalVariable.Email)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        list.add(msg);
+                    }
+
                 }
                 adapter.notifyDataSetChanged();
 

@@ -11,7 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.raisa.update1.Card.FindMember;
+import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.object.Member;
 import com.raisa.update1.object.Model;
 import com.raisa.update1.R;
@@ -22,6 +25,7 @@ import java.util.List;
 public class MemberSearchAdapter extends RecyclerView.Adapter<MemberSearchAdapter.MyViewHolder>{
 
     Context context;
+    private DatabaseReference rootRef;
 
     ArrayList<Model> list;
 
@@ -45,8 +49,8 @@ public class MemberSearchAdapter extends RecyclerView.Adapter<MemberSearchAdapte
         holder.sendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // sendRequest(); // nijer uid o pass krt hbe
-                Toast.makeText(context, "request sent part is yet to complete", Toast.LENGTH_SHORT).show();
+                sendRequest(member); // nijer uid o pass krt hbe
+
             }
         });
     }
@@ -66,5 +70,14 @@ public class MemberSearchAdapter extends RecyclerView.Adapter<MemberSearchAdapte
             sendRequest = itemView.findViewById(R.id.sendRequest);
 
         }
+    }
+
+    public void sendRequest(Model model)
+    {
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(model.getKey()).child("MemberRequest");
+        String id = rootRef.push().getKey();
+        Model member = new Model(id, GlobalVariable.Uid, GlobalVariable.UserName, GlobalVariable.Email);
+        rootRef.child(id).setValue(member);
+        Toast.makeText(context, "Request send!", Toast.LENGTH_SHORT).show();
     }
 }

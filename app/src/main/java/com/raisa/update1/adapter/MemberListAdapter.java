@@ -1,5 +1,7 @@
 package com.raisa.update1.adapter;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 import com.raisa.update1.object.Member;
 import com.raisa.update1.object.Model;
@@ -17,7 +23,7 @@ import java.util.ArrayList;
 
 public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.MyViewHolder>{
     Context context;
-
+    private DatabaseReference rootRef;
     ArrayList<Model> list;
 
 
@@ -35,17 +41,23 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MemberListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MemberListAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Model member = list.get(position);
         holder.name.setText(member.getName());
         holder.email.setText(member.getEmail());
-        holder.sendRequest.setOnClickListener(new View.OnClickListener() {
+        holder.unf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendRequest(); // nijer uid o pass krt hbe
-                Toast.makeText(context, "request sent part is yet to complete", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context, R.style.AppTheme_Dialog);
+                alertDialogBuilder.setTitle(R.string.delete_confirmation).setMessage(R.string.sureToDeleteMember).
+                        setPositiveButton(R.string.yes, (dialog, which) -> {
+                            deleteMember(member.getId());
+                        })
+                        .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel()).show();
+
             }
         });
+
     }
 
     @Override
@@ -55,17 +67,22 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.My
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name, email, sendRequest;
+        TextView name, email, unf;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
             email = itemView.findViewById(R.id.memberEmail);
             name = itemView.findViewById(R.id.memberName);
-            sendRequest = itemView.findViewById(R.id.sendRequest);
+            unf = itemView.findViewById(R.id.unFriend);
 
         }
     }
-    public void sendRequest(){
 
+    public void deleteMember(String key)
+    {
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList").child(key);
+        rootRef.removeValue();
+        Toast.makeText(context, "Member Removed!", Toast.LENGTH_SHORT).show();
     }
+
 }
