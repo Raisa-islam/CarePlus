@@ -51,7 +51,7 @@ public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) 
 public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Emergency_msg task = list.get(position);
         holder.title.setText(task.getMsg());
-    holder.menu.setOnClickListener(new View.OnClickListener() {
+        holder.menu.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             PopupMenu popupMenu = new PopupMenu(context, view);

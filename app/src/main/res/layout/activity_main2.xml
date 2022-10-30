@@ -262,12 +262,12 @@
                 android:layout_weight="1">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_Location"
+                    android:id="@+id/card_AddMember"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:padding="25dp"
-                    app:cardBackgroundColor="#BDF68A"
+                    app:cardBackgroundColor="#CC8AF6"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp">
 
@@ -281,17 +281,18 @@
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/ic_baseline_location_on_24" />
+                            android:background="@drawable/ic_baseline_groups_2_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Location"
+                            android:text="@string/menu_addmember"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/Card_settings"
@@ -341,37 +342,6 @@
                 android:gravity="center_horizontal"
                 android:layout_weight="1">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_AddMember"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    android:padding="25dp"
-                    app:cardBackgroundColor="#CC8AF6"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="10dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/ic_baseline_groups_2_24" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/menu_addmember"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/Card_Logout"

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,7 +36,9 @@ import java.util.List;
 public class FindMember extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<Model> list;
-    private DatabaseReference rootRef;
+    ArrayList<Model> listReq;
+    ArrayList<Model> listMember;
+    private DatabaseReference rootRef, rootRefReq, rootRefList;
     MemberSearchAdapter adapter;
 
     @Override
@@ -44,13 +47,43 @@ public class FindMember extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_find_member);
         rootRef = FirebaseDatabase.getInstance().getReference().child("UserList");
-
+        rootRefReq = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest");
+        rootRefList =  FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
         recyclerView = findViewById(R.id.recyclerViewSendreq);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
+        listReq = new ArrayList<>();
+        listMember = new ArrayList<>();
 
+        rootRefList.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Model msg3 = dataSnapshot.getValue(Model.class);
+                    listReq.add(msg3);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        rootRefReq.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Model msg2 = dataSnapshot.getValue(Model.class);
+                    listMember.add(msg2);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         rootRef.addValueEventListener(new ValueEventListener() {
 
@@ -59,16 +92,20 @@ public class FindMember extends AppCompatActivity {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
+
                     Model msg = dataSnapshot.getValue(Model.class);
-                    if (msg.getEmail()==GlobalVariable.Email)
+                    //Log.d("care_plus", msg.getEmail() + " "+ GlobalVariable.Email);
+                    if (msg.getEmail().compareTo(GlobalVariable.Email)==0)   //msg.getEmail()==GlobalVariable.Email
                     {
+                        //Log.d("care_plus", msg.getEmail() + " "+ GlobalVariable.Email);
                         continue;
                     }
-                    else
-                    {
+                    else {
                         list.add(msg);
-                    }
+                       /* */
 
+
+                    }
                 }
                 adapter.notifyDataSetChanged();
 

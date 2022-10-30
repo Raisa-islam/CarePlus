@@ -51,6 +51,13 @@ public class MemberReqAdapter extends RecyclerView.Adapter<MemberReqAdapter.MyVi
 
             }
         });
+        holder.deleteReq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteReq(member.getId());
+
+            }
+        });
     }
 
     @Override
@@ -60,13 +67,14 @@ public class MemberReqAdapter extends RecyclerView.Adapter<MemberReqAdapter.MyVi
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name, email, sendRequest;
+        TextView name, email, sendRequest, deleteReq;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
             email = itemView.findViewById(R.id.memberEmail);
             name = itemView.findViewById(R.id.memberName);
             sendRequest = itemView.findViewById(R.id.sendRequest);
+            deleteReq = itemView.findViewById(R.id.DeleteRequest);
 
         }
     }
@@ -79,5 +87,11 @@ public class MemberReqAdapter extends RecyclerView.Adapter<MemberReqAdapter.MyVi
         rootRef.child(id).setValue(member);
 
         Toast.makeText(context, "Request Accepted!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void deleteReq(String key)
+    {
+        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest").child(key);
+        rootRef2.removeValue();
     }
 }

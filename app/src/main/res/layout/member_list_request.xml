@@ -61,15 +61,33 @@
                 android:layout_gravity="center_horizontal">
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/sendRequest"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_gravity="end"
-                android:text="Accept Request"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccent"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end">
+
+                <TextView
+                    android:id="@+id/DeleteRequest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_gravity="end"
+                    android:text="Delete Request"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"/>
+                <TextView
+                    android:id="@+id/sendRequest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="end"
+                    android:text="Accept Request"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"/>
+
+            </LinearLayout>
+
+
 
 
         </LinearLayout>

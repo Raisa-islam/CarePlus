@@ -55,8 +55,8 @@ public class Emmergency extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_emmergency);
 
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Email).child("EmmergencyMessage");
-        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Email).child("Update");
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("EmmergencyMessage");
+        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Update");
 
         FAB = findViewById(R.id.Floating_icon);
         message = findViewById(R.id.EDTMSG);
@@ -102,7 +102,8 @@ public class Emmergency extends AppCompatActivity {
                 String id = rootRef.push().getKey();
                 Emergency_msg update = new Emergency_msg(id, done);                      // new cls intentionally create kri nai
                 rootRef2.child(id).setValue(update);
-
+                Toast.makeText(Emmergency.this, "Emergency message sent", Toast.LENGTH_SHORT).show();
+                msg.setText("");
             }
         });
         rootRef.addValueEventListener(new ValueEventListener() {

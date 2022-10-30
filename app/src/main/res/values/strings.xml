@@ -10,7 +10,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Daily Task List</string>
-    <string name="menu_slideshow">Calender</string>
+    <string name="menu_slideshow">Events</string>
     <string name="menu_addmember">Member</string>
     <string name="menu_location">Location</string>
 

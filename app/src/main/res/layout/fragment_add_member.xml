@@ -1,13 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AddMemberFragment">
-
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="this is AddMember" />
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Members"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black_shade_1"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+    </FrameLayout>
 
-</FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_gravity="center">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/MemListRV"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="280dp"
+            tools:listitem="@layout/member_list"/>
+    </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height=".75dp"
+        android:background="@android:color/black"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Member requests"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black_shade_1"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_gravity="center">
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/MemReqRV"
+            android:layout_width="wrap_content"
+            android:layout_height="280dp"
+            android:layout_gravity="center"
+            tools:listitem="@layout/member_list_request"/>
+
+
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="23dp">
+        <TextView
+            android:id="@+id/FindMemberPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find Member?"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
+    </FrameLayout>
+</LinearLayout>
+
+
