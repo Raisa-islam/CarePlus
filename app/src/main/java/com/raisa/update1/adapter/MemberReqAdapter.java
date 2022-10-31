@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class MemberReqAdapter extends RecyclerView.Adapter<MemberReqAdapter.MyViewHolder>{
     Context context;
-    private DatabaseReference rootRef, rootRef2;
+    private DatabaseReference rootRef, rootRef2, rootRef3;
 
     ArrayList<Model> list;
 
@@ -85,6 +85,12 @@ public class MemberReqAdapter extends RecyclerView.Adapter<MemberReqAdapter.MyVi
         String id = rootRef.push().getKey();
         Model member = new Model(id, model.getKey(), model.getName(), model.getEmail());
         rootRef.child(id).setValue(member);
+
+        rootRef3 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(model.getKey()).child("MemberList");
+        String id2 = rootRef.push().getKey();
+        Model member2 = new Model(id, GlobalVariable.Uid, GlobalVariable.UserName, GlobalVariable.Email);
+        rootRef.child(id2).setValue(member2);
+
 
         Toast.makeText(context, "Request Accepted!", Toast.LENGTH_SHORT).show();
     }
