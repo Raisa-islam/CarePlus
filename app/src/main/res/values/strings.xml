@@ -25,6 +25,7 @@
     <string name="sureToMarkAsComplete">Are you sure you want to mark this task as completed.</string>
     <string name="congrats_you_have_completed_the_task_successfully">Congrats!... You have completed the task successfully..</string>
     <string name="sureToDeleteEvent">Are you sure you want to delete the event</string>
+    <string name="sureToCompleteEvent">Are you sure you want to mark the event as completed</string>
     <string name="sureToDeleteMember">Are you sure you want to remove the member?</string>
 
 </resources>

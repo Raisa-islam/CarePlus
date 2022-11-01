@@ -140,7 +140,14 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
                                 break;
                             case R.id.menuComplete:
-                                Toast.makeText(context, "Complete pressed Inner part is remain", Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(context, R.style.AppTheme_Dialog);
+                                alertDialogBuilder2.setTitle(R.string.delete_confirmation).setMessage(R.string.sureToCompleteEvent).
+                                        setPositiveButton(R.string.yes, (dialog, which) -> {
+                                            deleteTaskFromId(task.getId(), position);
+                                        })
+                                        .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel()).show();
+
+                                Toast.makeText(context, "Event Completed", Toast.LENGTH_SHORT).show();
                                 holder.status.setText("COMPLETED");
                                 break;
                         }
