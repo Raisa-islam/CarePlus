@@ -31,6 +31,8 @@ import com.raisa.update1.Card.Member_card;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.MainActivity2;
 import com.raisa.update1.R;
+import com.raisa.update1.adapter.FragmentMemberListAdapter;
+import com.raisa.update1.adapter.FragmentMemberReqAdapter;
 import com.raisa.update1.adapter.MemberListAdapter;
 import com.raisa.update1.adapter.MemberReqAdapter;
 import com.raisa.update1.adapter.TaskListAdapter;
@@ -44,13 +46,13 @@ import java.util.ArrayList;
 
 public class AddMemberFragment extends Fragment {
     RecyclerView recyclerView;
-    MemberListAdapter adapter;
+    FragmentMemberListAdapter adapter;
     ArrayList<Model> list;
 
     private DatabaseReference rootRef;
     TextView Find;
     RecyclerView recyclerViewReq;
-    MemberReqAdapter adapterReq;
+    FragmentMemberReqAdapter adapterReq;
     ArrayList<Model> listReq;
 
     private DatabaseReference rootRefReq;
@@ -100,7 +102,7 @@ public class AddMemberFragment extends Fragment {
 
             }
         });
-        adapter = new MemberListAdapter(getContext(), list);// rootref
+        adapter = new FragmentMemberListAdapter(getContext(), list);// rootref
         recyclerView.setAdapter(adapter);
            Find.setOnClickListener(new View.OnClickListener() {
                @Override
@@ -142,7 +144,7 @@ public class AddMemberFragment extends Fragment {
 
             }
         });
-        adapterReq = new MemberReqAdapter(getContext(), listReq);
+        adapterReq = new FragmentMemberReqAdapter(getContext(), listReq);
         recyclerViewReq.setAdapter(adapterReq);
     }
 }
