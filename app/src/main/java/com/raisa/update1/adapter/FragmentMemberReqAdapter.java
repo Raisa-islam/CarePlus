@@ -85,17 +85,17 @@ public class FragmentMemberReqAdapter extends RecyclerView.Adapter<FragmentMembe
     }
     public void AcceptRequest(Model model){
         SharedPreferences shrd = context.getSharedPreferences("Constants", MODE_PRIVATE);
-
+        // pushing in member list
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("MemberList");
         String id = rootRef.push().getKey();
         Model member = new Model(id, model.getKey(), model.getName(), model.getEmail());
         rootRef.child(id).setValue(member);
-
+        //pushing in memberlist of other side
         rootRef3 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(model.getKey()).child("MemberList");
         String id2 = rootRef.push().getKey();
         Model member2 = new Model(id, shrd.getString("uid", null), shrd.getString("name","null"), shrd.getString("email", "null"));
         rootRef.child(id2).setValue(member2);
-
+        //deleting  from request list
         rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("MemberRequest").child(model.getId());
         rootRef2.removeValue();
         Toast.makeText(context, "Request Accepted!", Toast.LENGTH_SHORT).show();
