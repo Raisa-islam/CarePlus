@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.raisa.update1.Card.Calender_card;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
+import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Event;
 
 import java.util.ArrayList;
@@ -140,14 +141,11 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
                                 break;
                             case R.id.menuComplete:
-                                AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(context, R.style.AppTheme_Dialog);
-                                alertDialogBuilder2.setTitle(R.string.delete_confirmation).setMessage(R.string.sureToCompleteEvent).
-                                        setPositiveButton(R.string.yes, (dialog, which) -> {
-                                            deleteTaskFromId(task.getId(), position);
-                                        })
+                                AlertDialog.Builder completeAlertDialog = new AlertDialog.Builder(context, R.style.AppTheme_Dialog);
+                                completeAlertDialog.setTitle(R.string.confirmation).setMessage(R.string.sureToMarkAsComplete).
+                                        setPositiveButton(R.string.yes, (dialog, which) ->
+                                                showCompleteDialog(task.getId(), task.getTitle(), position))
                                         .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel()).show();
-
-                                Toast.makeText(context, "Event Completed", Toast.LENGTH_SHORT).show();
                                 holder.status.setText("COMPLETED");
                                 break;
                         }
@@ -270,6 +268,27 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
     }
+    public void showCompleteDialog(String taskId, String taskTitle, int position) {
+        Dialog dialog = new Dialog(context, R.style.AppTheme);
+        dialog.setContentView(R.layout.dialog_completed_theme);
+        Button close = dialog.findViewById(R.id.closeButton);
+        close.setOnClickListener(view -> {
+            //deleteTaskFromId(taskId, position);
+            Update_in_fb(taskTitle);
+            delete(taskId);
+            dialog.dismiss();
+        });
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+    }
+    public void Update_in_fb(String title)
+    {
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Update");
+        String done = GlobalVariable.UserName + " have completed " + title+"!";
+        String id = rootRef.push().getKey();
+        Emergency_msg update = new Emergency_msg(id, done);                                                                       // new cls intentionally create kri nai
+        rootRef.child(id).setValue(update);
+    }
     public void  deleteTaskFromId(String id, int position)
     {
         delete(id);
@@ -279,6 +298,6 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
     {
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Events").child(key);
         rootRef.removeValue();
-        Toast.makeText(context, "Task deleted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Event deleted", Toast.LENGTH_SHORT).show();
     }
 }

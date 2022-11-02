@@ -1,6 +1,7 @@
 package com.raisa.update1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -42,10 +43,12 @@ public class MainActivity3 extends AppCompatActivity implements NavigationView.O
         toggle.syncState();
 
         if(savedInstanceState==null){
-//            name = findViewById(R.id.Uname);
-//            email = findViewById(R.id.Uemail);
-//            name.setText(GlobalVariable.UserName);
-//            email.setText(GlobalVariable.Email);
+
+
+//         name = findViewById(R.id.Uname);
+//         email = findViewById(R.id.Uemail);
+//         name.setText();
+//        email.setText();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);}
 
@@ -53,10 +56,11 @@ public class MainActivity3 extends AppCompatActivity implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        SharedPreferences getShared = getSharedPreferences("Constants", MODE_PRIVATE);
         name = findViewById(R.id.Uname);
         email = findViewById(R.id.Uemail);
-        name.setText(GlobalVariable.UserName);
-        email.setText(GlobalVariable.Email);
+        name.setText(getShared.getString("name", "name"));
+        email.setText(getShared.getString("email", "email"));
         switch(item.getItemId()){
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();

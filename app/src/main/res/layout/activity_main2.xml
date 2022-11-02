@@ -137,7 +137,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:padding="20dp"
-                    app:cardBackgroundColor="#968AF6"
+                    app:cardBackgroundColor="#C5BFEF"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp">
 
@@ -190,7 +190,7 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:padding="23dp"
-                        app:cardBackgroundColor="#F68AEA"
+                        app:cardBackgroundColor="#EFBFE9"
                         app:cardCornerRadius="15dp"
                         app:cardElevation="10dp">
 
@@ -223,7 +223,8 @@
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
                         android:padding="23dp"
-                        app:cardBackgroundColor="#F36C6C"
+                        app:cardBackgroundColor="#BFD1EF"
+
                         app:cardCornerRadius="15dp"
                         app:cardElevation="10dp">
 
@@ -238,7 +239,7 @@
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:background="@drawable/ic_menu_camera" />
+                                android:background="@drawable/emergency_icon" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -267,7 +268,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:padding="25dp"
-                    app:cardBackgroundColor="#CC8AF6"
+                    app:cardBackgroundColor="#DDBFEF"
                     app:cardCornerRadius="15dp"
                     app:cardElevation="10dp">
 

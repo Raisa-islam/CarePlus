@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -47,8 +48,11 @@ public class FindMember extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_find_member);
         rootRef = FirebaseDatabase.getInstance().getReference().child("UserList");
-        rootRefReq = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest");
-        rootRefList =  FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
+        SharedPreferences shrd1 = getSharedPreferences("Constants", MODE_PRIVATE);
+        Log.d("email",  "raisa_mentally_unstable"+shrd1.getString("email","null"));
+        Log.d("uid",  "raisa_mentally_unstable"+shrd1.getString("uid","null"));
+        rootRefReq = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd1.getString("uid", "null")).child("MemberRequest");
+        rootRefList =  FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd1.getString("uid", "null")).child("MemberList");
         recyclerView = findViewById(R.id.recyclerViewSendreq);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -85,6 +89,7 @@ public class FindMember extends AppCompatActivity {
             }
         });
 
+        SharedPreferences shrd = getSharedPreferences("Constants", MODE_PRIVATE);
         rootRef.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -94,8 +99,8 @@ public class FindMember extends AppCompatActivity {
 
 
                     Model msg = dataSnapshot.getValue(Model.class);
-                    //Log.d("care_plus", msg.getEmail() + " "+ GlobalVariable.Email);
-                    if (msg.getEmail().compareTo(GlobalVariable.Email)==0)   //msg.getEmail()==GlobalVariable.Email
+                    Log.d("care_plus", msg.getEmail() + " "+ shrd.getString("email","null"));
+                    if (msg.getEmail().compareTo(shrd.getString("email","null"))==0)   //msg.getEmail()==GlobalVariable.Email
                     {
                         //Log.d("care_plus", msg.getEmail() + " "+ GlobalVariable.Email);
                         continue;

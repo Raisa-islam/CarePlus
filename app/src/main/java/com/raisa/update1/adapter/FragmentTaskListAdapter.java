@@ -1,9 +1,12 @@
 package com.raisa.update1.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -383,7 +386,10 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
     private void update(String id, String title, String description, String hour, String min,
                         String everyday, String sun, String mon, String tues, String wed, String thurs, String fri, String sat)
     {
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
+        SharedPreferences shrd = context.getSharedPreferences("Constants", MODE_PRIVATE);//getSharedPreferences();
+
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("Tasks");
+        //rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
         Task task = new Task(id, title, description, hour, min, everyday, sun, mon, tues, wed, thurs, fri, sat);
         rootRef.child(id).setValue(task);
         Toast.makeText(context, "Task updated", Toast.LENGTH_SHORT).show();
@@ -403,7 +409,8 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
     }
     public void Update_in_fb(String title)
     {
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Update");
+        SharedPreferences shrd = context.getSharedPreferences("Constants", MODE_PRIVATE);
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("Update");
         String done = GlobalVariable.UserName + " have completed " + title+"!";
         String id = rootRef.push().getKey();
         Emergency_msg update = new Emergency_msg(id, done);                                                                       // new cls intentionally create kri nai
@@ -416,7 +423,8 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
     }
     private void delete(String key)
     {
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks").child(key);
+        SharedPreferences shrd = context.getSharedPreferences("Constants", MODE_PRIVATE);
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("Tasks").child(key);
         rootRef.removeValue();
         Toast.makeText(context, "Task deleted", Toast.LENGTH_SHORT).show();
     }

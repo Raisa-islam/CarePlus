@@ -16,15 +16,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/patient_name"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Name:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/patient_des"
+            android:id="@+id/HomeUpdate"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="Description:"

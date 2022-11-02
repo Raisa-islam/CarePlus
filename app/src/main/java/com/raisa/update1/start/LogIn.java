@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -118,6 +119,9 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void checkUserAccessLevel(String uid) {
+        SharedPreferences shrd = getSharedPreferences("Constants",MODE_PRIVATE);
+        SharedPreferences.Editor editor = shrd.edit();
+        editor.putString("uid", uid);
         GlobalVariable.Uid = uid;
         DocumentReference df = fStore.collection("Users").document(uid);
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -135,6 +139,8 @@ public class LogIn extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), MainActivity3.class));
                     finish();
                 }
+                editor.putString("name", documentSnapshot.getString("Name"));
+                editor.putString("email", documentSnapshot.getString("UserEmail"));
                 GlobalVariable.UserName = documentSnapshot.getString("Name");
                 GlobalVariable.Email = documentSnapshot.getString("UserEmail");
                 GlobalVariable.age = documentSnapshot.getString("Age");
@@ -144,7 +150,9 @@ public class LogIn extends AppCompatActivity {
                 GlobalVariable.others = documentSnapshot.getString("Others");
                 GlobalVariable.contacNo = documentSnapshot.getString("emmergencyContact");
             }
+
         });
+        editor.apply();
     }
     @Override
     protected void onStart() {

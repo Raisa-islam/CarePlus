@@ -1,6 +1,9 @@
 package com.raisa.update1;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -56,8 +59,9 @@ public class DailyTaskListFragment extends Fragment {
 
 
         super.onViewCreated(view,savedInstanceState);
+       SharedPreferences shrd = getContext().getSharedPreferences("Constants", MODE_PRIVATE);
 
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("Tasks");
 
         addTask =getView().findViewById(R.id.addTask);
         noNote = getView().findViewById(R.id.noNote);
@@ -279,10 +283,11 @@ public class DailyTaskListFragment extends Fragment {
 
     }
 
-    private void add_data(String t, String d, String hrs, String min, String e, String sun1, String mon1, String tues1, String wed1, String thurs1, String f, String sat1) {
+    private void add_data(String t, String d, String hrs, String min, String e, String sun1,
+                          String mon1, String tues1, String wed1, String thurs1, String f, String sat1) {
         String id = rootRef.push().getKey();
-        String description_add=t;
-        String title_add=d;
+        String description_add=d;
+        String title_add=t;
         String hour=hrs;
         String everyday=e;
         String mon=mon1;

@@ -1,7 +1,10 @@
 package com.raisa.update1.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +79,8 @@ public class MemberSearchAdapter extends RecyclerView.Adapter<MemberSearchAdapte
     {
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(model.getKey()).child("MemberRequest");
         String id = rootRef.push().getKey();
-        Model member = new Model(id, GlobalVariable.Uid, GlobalVariable.UserName, GlobalVariable.Email);
+        SharedPreferences shrd = context.getSharedPreferences("Constants", MODE_PRIVATE);
+        Model member = new Model(id, shrd.getString("uid", "null"), shrd.getString("name","null"), shrd.getString("email", "null"));
         rootRef.child(id).setValue(member);
         Toast.makeText(context, "Request send!", Toast.LENGTH_SHORT).show();
     }
