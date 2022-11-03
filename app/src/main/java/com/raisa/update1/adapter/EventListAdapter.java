@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,10 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -154,6 +157,23 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
                 });
             }
         });
+
+        holder.alarmStarted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Log.d("alarm", "state " + b);
+                    if(b)
+                    {
+                        Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();                                                     // alarm set krbo
+                    }
+                    else
+                    {
+                        Toast.makeText(context, "alarm is cancel", Toast.LENGTH_SHORT).show();
+                    }
+
+
+            }
+        });
     }
 
     @Override
@@ -165,6 +185,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
         TextView title, description, hour, min, status, days, date, month;
         ImageView menu;
+        Switch alarmStarted;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
@@ -177,6 +198,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
             date = itemView.findViewById(R.id.date);
             month = itemView.findViewById(R.id.month);
             status = itemView.findViewById(R.id.status);
+            alarmStarted = itemView.findViewById(R.id.item_alarm_started);
+
 
 
 
@@ -251,7 +274,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
                 if(!TextUtils.isEmpty(t)||!TextUtils.isEmpty(d) )
                 {
 
-                    //addInfo(t, d, da,m,y, h, m);
+//                    addInfo(t, d, da,m,y, h, m);
                 }
                 else {
                     Toast.makeText(context, "Please fill all the fields...", Toast.LENGTH_SHORT).show();

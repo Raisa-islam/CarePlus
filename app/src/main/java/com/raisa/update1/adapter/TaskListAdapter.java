@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -146,6 +148,23 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
             }
         });
 
+        holder.alarmStarted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Log.d("alarm", "state " + b);
+                if(b)
+                {
+                    Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();                                                     // alarm set krbo
+                }
+                else
+                {
+                    Toast.makeText(context, "alarm is cancel", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
 
     }
 
@@ -158,7 +177,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
 
         TextView title, description, hour, min, status, days;
         ImageView menu;
-
+        Switch alarmStarted;
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
             title = itemView.findViewById(R.id.title);
@@ -167,6 +186,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
             min = itemView.findViewById(R.id.min);
             menu = itemView.findViewById(R.id.options);
             status = itemView.findViewById(R.id.status);
+            alarmStarted = itemView.findViewById(R.id.item_alarm_started);
 
 
              days = itemView.findViewById(R.id.days);

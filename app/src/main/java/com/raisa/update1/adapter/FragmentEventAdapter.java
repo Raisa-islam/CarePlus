@@ -21,6 +21,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -153,7 +154,22 @@ public class FragmentEventAdapter  extends RecyclerView.Adapter<FragmentEventAda
             }
         });
 
+        holder.alarmStarted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    Log.d("alarm", "state " + b);
+//                    if(b)
+//                    {
+//                        Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else
+//                    {
+//                        Toast.makeText(context, "alarm is cancel", Toast.LENGTH_SHORT).show();
+//                    }
+                Toast.makeText(context, "alarm is cancel", Toast.LENGTH_SHORT).show();
 
+            }
+        });
     }
 
     @Override
@@ -165,6 +181,8 @@ public class FragmentEventAdapter  extends RecyclerView.Adapter<FragmentEventAda
 
         TextView title, description, hour, min, status, days;
         ImageView menu;
+        Switch alarmStarted;
+        //private OnToggleAlarmListener listener;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
@@ -174,9 +192,11 @@ public class FragmentEventAdapter  extends RecyclerView.Adapter<FragmentEventAda
             min = itemView.findViewById(R.id.min);
             menu = itemView.findViewById(R.id.options);
             status = itemView.findViewById(R.id.status);
+            alarmStarted = itemView.findViewById(R.id.item_alarm_started);
 
 
             days = itemView.findViewById(R.id.days);
+
             // TextView status = itemView.findViewById(R.id.status);
 
 
