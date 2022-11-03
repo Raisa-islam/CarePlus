@@ -139,7 +139,7 @@ public class AddMemberFragment extends Fragment {
                     Log.d("Requests", "here it is:"+member.getName());
                     listReq.add(member);
                 }
-                adapter.notifyDataSetChanged();
+                adapterReq.notifyDataSetChanged();
                 if(listReq.size()==0){
 
                 }
