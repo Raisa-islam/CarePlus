@@ -124,7 +124,8 @@ public class AddMemberFragment extends Fragment {
         recyclerViewReq = getView().findViewById(R.id.MemReqRV);
         recyclerViewReq.setHasFixedSize(true);
         //********************************
-        recyclerViewReq.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(getContext());
+        recyclerViewReq.setLayoutManager(linearLayoutManager1);
         listReq = new ArrayList<>();
 
         rootRefReq.addValueEventListener(new ValueEventListener() {
