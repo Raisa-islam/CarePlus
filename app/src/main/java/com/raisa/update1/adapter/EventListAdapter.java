@@ -66,56 +66,57 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         holder.min.setText(task.getMin());
        // holder.days.setText(task.getDay());
         holder.date.setText(task.getDd());
-        String mon = "";
-        if (task.getMm()=="1")
-        {
-            mon += "Jan";
-        }
-        if (task.getMm()=="2")
-        {
-            mon += "Feb";
-        }
-        if (task.getMm()=="3")
-        {
-            mon += "Mar";
-        }
-        if (task.getMm()=="4")
-        {
-            mon += "Apr";
-        }
-        if (task.getMm()=="5")
-        {
-            mon += "May";
-        }
-        if (task.getMm()=="6")
-        {
-            mon += "Jun";
-        }
-        if (task.getMm()=="7")
-        {
-            mon += "Jul";
-        }
-        if (task.getMm()=="8")
-        {
-            mon += "Aug";
-        }
-        if (task.getMm()=="9")
-        {
-            mon += "Sep";
-        }
-        if (task.getMm()=="10")
-        {
-            mon += "Oct";
-        }
-        if (task.getMm()=="11")
-        {
-            mon += "Nov";
-        }
-        if (task.getMm()=="12")
-        {
-            mon += "Dec";
-        }
-        holder.month.setText(mon);//***************************************************month kn show kre na
+        holder.days.setText(task.getYyyy());
+//        String mon = "";
+//        if (task.getMm()=="1")
+//        {
+//            mon += "Jan";
+//        }
+//        if (task.getMm()=="2")
+//        {
+//            mon += "Feb";
+//        }
+//        if (task.getMm()=="3")
+//        {
+//            mon += "Mar";
+//        }
+//        if (task.getMm()=="4")
+//        {
+//            mon += "Apr";
+//        }
+//        if (task.getMm()=="5")
+//        {
+//            mon += "May";
+//        }
+//        if (task.getMm()=="6")
+//        {
+//            mon += "Jun";
+//        }
+//        if (task.getMm()=="7")
+//        {
+//            mon += "Jul";
+//        }
+//        if (task.getMm()=="8")
+//        {
+//            mon += "Aug";
+//        }
+//        if (task.getMm()=="9")
+//        {
+//            mon += "Sep";
+//        }
+//        if (task.getMm()=="10")
+//        {
+//            mon += "Oct";
+//        }
+//        if (task.getMm()=="11")
+//        {
+//            mon += "Nov";
+//        }
+//        if (task.getMm()=="12")
+//        {
+//            mon += "Dec";
+//        }
+        holder.month.setText(task.getMm());//***************************************************month kn show kre na
 
 
         holder.menu.setOnClickListener(new View.OnClickListener() {
