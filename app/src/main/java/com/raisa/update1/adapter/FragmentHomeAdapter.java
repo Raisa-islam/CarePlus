@@ -1,6 +1,7 @@
 package com.raisa.update1.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 
 import com.raisa.update1.object.UpdateObject;
@@ -59,4 +67,6 @@ public class FragmentHomeAdapter extends RecyclerView.Adapter<FragmentHomeAdapte
 
         }
     }
+
+
 }

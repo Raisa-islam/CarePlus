@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 import com.raisa.update1.object.Model;
@@ -84,27 +91,49 @@ public class FragmentMemberReqAdapter extends RecyclerView.Adapter<FragmentMembe
         }
     }
     public void AcceptRequest(Model model){
-        SharedPreferences shrd = context.getSharedPreferences("Constants", MODE_PRIVATE);
+
+        set_var();
         // pushing in member list
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("MemberList");
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
         String id = rootRef.push().getKey();
         Model member = new Model(id, model.getKey(), model.getName(), model.getEmail());
         rootRef.child(id).setValue(member);
         //pushing in memberlist of other side
         rootRef3 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(model.getKey()).child("MemberList");
-        String id2 = rootRef.push().getKey();
-        Model member2 = new Model(id, shrd.getString("uid", null), shrd.getString("name","null"), shrd.getString("email", "null"));
-        rootRef.child(id2).setValue(member2);
+        String id2 = rootRef3.push().getKey();
+        Model member2 = new Model(id2, GlobalVariable.Uid,GlobalVariable.UserName, GlobalVariable.Email);
+        rootRef3.child(id2).setValue(member2);
         //deleting  from request list
-        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("MemberRequest").child(model.getId());
+        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest").child(model.getId());
         rootRef2.removeValue();
         Toast.makeText(context, "Request Accepted!", Toast.LENGTH_SHORT).show();
     }
 
     public void deleteReq(String key)
     {
-        SharedPreferences shrd = context.getSharedPreferences("Constants", MODE_PRIVATE);
-        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null) ).child("MemberRequest").child(key);
+        set_var();
+        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest").child(key);
         rootRef2.removeValue();
+    }
+    void set_var()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore fStore;
+        fStore = FirebaseFirestore.getInstance();
+        GlobalVariable.Uid = user.getUid();
+
+
+        DocumentReference df = fStore.collection("Users").document(GlobalVariable.Uid);
+
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG","onSuccess: " + documentSnapshot.getData());
+                GlobalVariable.UserName = documentSnapshot.getString("Name");
+                GlobalVariable.Email = documentSnapshot.getString("UserEmail");
+
+            }
+        });
+
     }
 }

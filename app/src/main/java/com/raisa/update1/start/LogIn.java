@@ -36,6 +36,8 @@ public class LogIn extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fStore;
 
+    String name, email1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,10 +121,10 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void checkUserAccessLevel(String uid) {
-        SharedPreferences shrd = getSharedPreferences("Constants",MODE_PRIVATE);
-        SharedPreferences.Editor editor = shrd.edit();
-        editor.putString("uid", uid);
+
+
         GlobalVariable.Uid = uid;
+
         DocumentReference df = fStore.collection("Users").document(uid);
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -139,8 +141,12 @@ public class LogIn extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), MainActivity3.class));
                     finish();
                 }
-                editor.putString("name", documentSnapshot.getString("Name"));
-                editor.putString("email", documentSnapshot.getString("UserEmail"));
+                Log.d("raisa_app_project",documentSnapshot.getString("Name")+"    " +documentSnapshot.getString("UserEmail") );
+                //editor.putString("name", documentSnapshot.getString("Name"));
+                name = documentSnapshot.getString("Name");
+                email1 = documentSnapshot.getString("UserEmail");
+                //editor.putString("email", documentSnapshot.getString("UserEmail"));
+
                 GlobalVariable.UserName = documentSnapshot.getString("Name");
                 GlobalVariable.Email = documentSnapshot.getString("UserEmail");
                 GlobalVariable.age = documentSnapshot.getString("Age");
@@ -152,7 +158,9 @@ public class LogIn extends AppCompatActivity {
             }
 
         });
-        editor.apply();
+
+        //editor.apply();
+
     }
     @Override
     protected void onStart() {

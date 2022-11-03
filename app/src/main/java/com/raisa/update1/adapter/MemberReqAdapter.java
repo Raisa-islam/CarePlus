@@ -79,19 +79,19 @@ public class MemberReqAdapter extends RecyclerView.Adapter<MemberReqAdapter.MyVi
         }
     }
     public void AcceptRequest(Model model){
-        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest").child(model.getId());
-        rootRef2.removeValue();
+
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
         String id = rootRef.push().getKey();
         Model member = new Model(id, model.getKey(), model.getName(), model.getEmail());
         rootRef.child(id).setValue(member);
 
         rootRef3 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(model.getKey()).child("MemberList");
-        String id2 = rootRef.push().getKey();
-        Model member2 = new Model(id, GlobalVariable.Uid, GlobalVariable.UserName, GlobalVariable.Email);
-        rootRef.child(id2).setValue(member2);
+        String id2 = rootRef3.push().getKey();
+        Model member2 = new Model(id2, GlobalVariable.Uid, GlobalVariable.UserName, GlobalVariable.Email);
+        rootRef3.child(id2).setValue(member2);
 
-
+        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest").child(model.getId());
+        rootRef2.removeValue();
         Toast.makeText(context, "Request Accepted!", Toast.LENGTH_SHORT).show();
     }
 

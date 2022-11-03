@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,25 +22,24 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Card.FindMember;
-import com.raisa.update1.Card.Member_card;
 import com.raisa.update1.Constants.GlobalVariable;
-import com.raisa.update1.MainActivity2;
-import com.raisa.update1.R;
 import com.raisa.update1.adapter.FragmentMemberListAdapter;
 import com.raisa.update1.adapter.FragmentMemberReqAdapter;
-import com.raisa.update1.adapter.MemberListAdapter;
-import com.raisa.update1.adapter.MemberReqAdapter;
-import com.raisa.update1.adapter.TaskListAdapter;
-import com.raisa.update1.object.Member;
+
 import com.raisa.update1.object.Model;
-import com.raisa.update1.object.Task;
-import com.raisa.update1.start.LogIn;
+
 
 import java.util.ArrayList;
 
@@ -68,13 +68,16 @@ public class AddMemberFragment extends Fragment {
 
 
            Find = getView().findViewById(R.id.FindMemberPage);
-        SharedPreferences shrd = getContext().getSharedPreferences("Constants", MODE_PRIVATE);
+           set_var();
 
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("MemberList");
+
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
         //****************************************************
         recyclerView =getView().findViewById(R.id.MemListRV);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
         list = new ArrayList<>();
         Find = getView().findViewById(R.id.FindMemberPage);
         rootRef.addValueEventListener(new ValueEventListener() {
@@ -102,20 +105,25 @@ public class AddMemberFragment extends Fragment {
 
             }
         });
+
+
         adapter = new FragmentMemberListAdapter(getContext(), list);// rootref
         recyclerView.setAdapter(adapter);
-           Find.setOnClickListener(new View.OnClickListener() {
+
+
+        Find.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
                    Intent i = new Intent( getContext(), FindMember.class);
                    startActivity(i);
                }
-           });
+        });
 
-        rootRefReq = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("MemberRequest");
+        rootRefReq = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest");
         //****************************************************
         recyclerViewReq = getView().findViewById(R.id.MemReqRV);
         recyclerViewReq.setHasFixedSize(true);
+        //********************************
         recyclerViewReq.setLayoutManager(new LinearLayoutManager(getContext()));
         listReq = new ArrayList<>();
 
@@ -127,6 +135,7 @@ public class AddMemberFragment extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
                     Model member = dataSnapshot.getValue(Model.class);
+                    Log.d("Requests", "here it is:"+member.getName());
                     listReq.add(member);
                 }
                 adapter.notifyDataSetChanged();
@@ -145,6 +154,29 @@ public class AddMemberFragment extends Fragment {
             }
         });
         adapterReq = new FragmentMemberReqAdapter(getContext(), listReq);
+        Log.d("Request Adapter","onFailure: " + listReq.size() );
         recyclerViewReq.setAdapter(adapterReq);
+    }
+
+    void set_var()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore fStore;
+        fStore = FirebaseFirestore.getInstance();
+        GlobalVariable.Uid = user.getUid();
+
+
+        DocumentReference df = fStore.collection("Users").document(GlobalVariable.Uid);
+
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG","onSuccess: " + documentSnapshot.getData());
+                GlobalVariable.UserName = documentSnapshot.getString("Name");
+                GlobalVariable.Email = documentSnapshot.getString("UserEmail");
+
+            }
+        });
+
     }
 }

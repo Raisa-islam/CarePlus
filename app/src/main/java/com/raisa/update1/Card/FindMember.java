@@ -12,12 +12,16 @@ import android.view.WindowManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -48,11 +52,12 @@ public class FindMember extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_find_member);
         rootRef = FirebaseDatabase.getInstance().getReference().child("UserList");
-        SharedPreferences shrd1 = getSharedPreferences("Constants", MODE_PRIVATE);
-        Log.d("email",  "raisa_mentally_unstable"+shrd1.getString("email","null"));
-        Log.d("uid",  "raisa_mentally_unstable"+shrd1.getString("uid","null"));
-        rootRefReq = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd1.getString("uid", "null")).child("MemberRequest");
-        rootRefList =  FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd1.getString("uid", "null")).child("MemberList");
+
+        set_var();
+//        Log.d("email",  "raisa_mentally_unstable"+shrd1.getString("email","null"));
+//        Log.d("uid",  "raisa_mentally_unstable"+shrd1.getString("uid","null"));
+        rootRefReq = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberRequest");
+        rootRefList =  FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
         recyclerView = findViewById(R.id.recyclerViewSendreq);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -89,7 +94,7 @@ public class FindMember extends AppCompatActivity {
             }
         });
 
-        SharedPreferences shrd = getSharedPreferences("Constants", MODE_PRIVATE);
+
         rootRef.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -99,8 +104,8 @@ public class FindMember extends AppCompatActivity {
 
 
                     Model msg = dataSnapshot.getValue(Model.class);
-                    Log.d("care_plus", msg.getEmail() + " "+ shrd.getString("email","null"));
-                    if (msg.getEmail().compareTo(shrd.getString("email","null"))==0)   //msg.getEmail()==GlobalVariable.Email
+                    //Log.d("care_plus", msg.getEmail() + " "+ shrd.getString("email","null"));
+                    if (msg.getEmail().compareTo(GlobalVariable.Email)==0)   //msg.getEmail()==GlobalVariable.Email
                     {
                         //Log.d("care_plus", msg.getEmail() + " "+ GlobalVariable.Email);
                         continue;
@@ -124,6 +129,28 @@ public class FindMember extends AppCompatActivity {
         });
         adapter = new MemberSearchAdapter(this, list);// rootref
         recyclerView.setAdapter(adapter);
+
+    }
+
+    void set_var()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore fStore;
+        fStore = FirebaseFirestore.getInstance();
+        GlobalVariable.Uid = user.getUid();
+
+
+        DocumentReference df = fStore.collection("Users").document(GlobalVariable.Uid);
+
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG","onSuccess: " + documentSnapshot.getData());
+                GlobalVariable.UserName = documentSnapshot.getString("Name");
+                GlobalVariable.Email = documentSnapshot.getString("UserEmail");
+
+            }
+        });
 
     }
 }

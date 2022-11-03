@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.MyViewHolder>{
     Context context;
-    private DatabaseReference rootRef;
+    private DatabaseReference rootRef, rootRef2;
     ArrayList<Model> list;
 
 
@@ -51,7 +51,7 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.My
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context, R.style.AppTheme_Dialog);
                 alertDialogBuilder.setTitle(R.string.delete_confirmation).setMessage(R.string.sureToDeleteMember).
                         setPositiveButton(R.string.yes, (dialog, which) -> {
-                            deleteMember(member.getId());
+                            deleteMember(member.getId(), member.getKey());
                         })
                         .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel()).show();
 
@@ -78,11 +78,15 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.My
         }
     }
 
-    public void deleteMember(String key)
+    public void deleteMember(String key, String id)
     {
+        //rootRef2 = FirebaseDatabase.getInstance().getReference("careNeeder").child(id).child("MemberList").child("");
+
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList").child(key);
         rootRef.removeValue();
-        Toast.makeText(context, "Member Removed!", Toast.LENGTH_SHORT).show();
+
+
+        Toast.makeText(context, "Member Removed! + remove from other side is yet to complete", Toast.LENGTH_SHORT).show();
     }
 
 }

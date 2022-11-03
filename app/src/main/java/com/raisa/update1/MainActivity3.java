@@ -56,11 +56,11 @@ public class MainActivity3 extends AppCompatActivity implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        SharedPreferences getShared = getSharedPreferences("Constants", MODE_PRIVATE);
+
         name = findViewById(R.id.Uname);
         email = findViewById(R.id.Uemail);
-        name.setText(getShared.getString("name", "name"));
-        email.setText(getShared.getString("email", "email"));
+        name.setText(GlobalVariable.UserName);
+        email.setText(GlobalVariable.Email);
         switch(item.getItemId()){
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();

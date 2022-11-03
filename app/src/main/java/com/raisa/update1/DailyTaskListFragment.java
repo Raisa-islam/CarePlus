@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +27,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.Views.DayViewCheckBox;
 import com.raisa.update1.adapter.FragmentTaskListAdapter;
@@ -59,9 +66,9 @@ public class DailyTaskListFragment extends Fragment {
 
 
         super.onViewCreated(view,savedInstanceState);
-       SharedPreferences shrd = getContext().getSharedPreferences("Constants", MODE_PRIVATE);
 
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(shrd.getString("uid", null)).child("Tasks");
+        set_var();
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
 
         addTask =getView().findViewById(R.id.addTask);
         noNote = getView().findViewById(R.id.noNote);
@@ -299,5 +306,27 @@ public class DailyTaskListFragment extends Fragment {
         String sun=sun1;
         Task task = new Task(id, title_add, description_add, hour, min, everyday, sun, mon, tues, wed, thurs, fri, sat);
         rootRef.child(id).setValue(task);
+    }
+
+    void set_var()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore fStore;
+        fStore = FirebaseFirestore.getInstance();
+        GlobalVariable.Uid = user.getUid();
+
+
+        DocumentReference df = fStore.collection("Users").document(GlobalVariable.Uid);
+
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG","onSuccess: " + documentSnapshot.getData());
+                GlobalVariable.UserName = documentSnapshot.getString("Name");
+                GlobalVariable.Email = documentSnapshot.getString("UserEmail");
+
+            }
+        });
+
     }
 }
