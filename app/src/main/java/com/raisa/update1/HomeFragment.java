@@ -79,6 +79,7 @@ public class HomeFragment extends Fragment {
                                 UpdateObject update = dataSnapshot1.getValue(UpdateObject.class);
                                 list.add(update);
                             }
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
@@ -89,7 +90,9 @@ public class HomeFragment extends Fragment {
                     //UpdateObject task = dataSnapshot.getValue(UpdateObject.class);
                    // list.add(task);
                 }
-                adapter.notifyDataSetChanged();
+
+
+
 
 
             }
