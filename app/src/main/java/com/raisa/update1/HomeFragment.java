@@ -76,7 +76,9 @@ public class HomeFragment extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot snapshot1) {
                             for (DataSnapshot dataSnapshot1: snapshot1.getChildren())
                             {
+
                                 UpdateObject update = dataSnapshot1.getValue(UpdateObject.class);
+                                Log.d("Update", "u msg is "+update.getUpdate_msg());
                                 list.add(update);
                             }
                             adapter.notifyDataSetChanged();
