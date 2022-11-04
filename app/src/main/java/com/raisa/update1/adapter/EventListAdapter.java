@@ -34,14 +34,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Card.Calender_card;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 import com.raisa.update1.object.Alarm;
 import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Event;
+import com.raisa.update1.object.Task;
 import com.raisa.update1.reminderset.AlarmBrodcast;
 
 import java.text.DateFormat;
@@ -288,7 +295,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
                 if(!TextUtils.isEmpty(t)||!TextUtils.isEmpty(d) )
                 {
 
-//                    addInfo(t, d, da,m,y, h, m);
+//
+                    update(event.getId(), t, d,da, m, y,h, mi);
                 }
                 else {
                     Toast.makeText(context, "Please fill all the fields...", Toast.LENGTH_SHORT).show();
@@ -318,6 +326,19 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
     }
+
+
+    private void update(String id, String title, String description, String dd, String mm, String yy, String hour, String min)
+    {
+        set_var();
+
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Events");
+        //rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
+        Event event = new Event(id, title, description, hour, min, dd, mm, yy);
+        rootRef.child(id).setValue(event);
+        Toast.makeText(context, "Event updated", Toast.LENGTH_SHORT).show();
+
+    }
     public void Update_in_fb(String title)
     {
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Update");
@@ -336,6 +357,28 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Events").child(key);
         rootRef.removeValue();
         Toast.makeText(context, "Event deleted", Toast.LENGTH_SHORT).show();
+    }
+
+    void set_var()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore fStore;
+        fStore = FirebaseFirestore.getInstance();
+        GlobalVariable.Uid = user.getUid();
+
+
+        DocumentReference df = fStore.collection("Users").document(GlobalVariable.Uid);
+
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG","onSuccess: " + documentSnapshot.getData());
+                GlobalVariable.UserName = documentSnapshot.getString("Name");
+                GlobalVariable.Email = documentSnapshot.getString("UserEmail");
+
+            }
+        });
+
     }
 
 //    private void setAlarm(String text, String date, String time) {
