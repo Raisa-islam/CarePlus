@@ -30,6 +30,7 @@ public class MainActivity3 extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_main3);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Care Plus");
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -45,10 +46,10 @@ public class MainActivity3 extends AppCompatActivity implements NavigationView.O
         if(savedInstanceState==null){
 
 
-//         name = findViewById(R.id.Uname);
-//         email = findViewById(R.id.Uemail);
-//         name.setText();
-//        email.setText();
+////         name = findViewById(R.id.Uname);
+////         email = findViewById(R.id.Uemail);
+//         name.setText(GlobalVariable.UserName);
+//        email.setText(GlobalVariable.Uid);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);}
 
@@ -63,6 +64,7 @@ public class MainActivity3 extends AppCompatActivity implements NavigationView.O
         email.setText(GlobalVariable.Email);
         switch(item.getItemId()){
             case R.id.nav_home:
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
                 break;
 
