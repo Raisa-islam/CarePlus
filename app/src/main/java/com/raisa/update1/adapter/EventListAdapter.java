@@ -306,7 +306,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
 
     }
     public void showCompleteDialog(String taskId, String taskTitle, int position) {
-        Dialog dialog = new Dialog(context, R.style.AppTheme);
+        Dialog dialog = new Dialog(context, R.style.AppTheme_2);
         dialog.setContentView(R.layout.dialog_completed_theme);
         Button close = dialog.findViewById(R.id.closeButton);
         close.setOnClickListener(view -> {
