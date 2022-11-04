@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 
+import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.UpdateObject;
 
 import java.util.ArrayList;
@@ -29,10 +30,10 @@ public class FragmentHomeAdapter extends RecyclerView.Adapter<FragmentHomeAdapte
 
     Context context;
 
-    ArrayList<UpdateObject> list;
+    ArrayList<Emergency_msg> list;
     private DatabaseReference rootRef1, rootRefMembers;
 
-    public FragmentHomeAdapter(Context context, ArrayList<UpdateObject> list) {
+    public FragmentHomeAdapter(Context context, ArrayList<Emergency_msg> list) {
         this.context = context;
         this.list = list;
     }
@@ -46,8 +47,8 @@ public class FragmentHomeAdapter extends RecyclerView.Adapter<FragmentHomeAdapte
 
     @Override
     public void onBindViewHolder(@NonNull FragmentHomeAdapter.MyViewHolder holder, int position) {
-        UpdateObject task = list.get(position);
-        holder.update.setText(task.getUpdate_msg());
+        Emergency_msg task = list.get(position);
+        holder.update.setText(task.getMsg());
     }
 
     @Override

@@ -162,7 +162,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
                                         setPositiveButton(R.string.yes, (dialog, which) ->
                                                 showCompleteDialog(task.getId(), task.getTitle(), position))
                                         .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel()).show();
-                                holder.status.setText("COMPLETED");
+
                                 break;
                         }
                         return false;
@@ -211,7 +211,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
             days = itemView.findViewById(R.id.day);
             date = itemView.findViewById(R.id.date);
             month = itemView.findViewById(R.id.month);
-            status = itemView.findViewById(R.id.status);
+
             alarmStarted = itemView.findViewById(R.id.item_alarm_started);
 
 

@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.adapter.FragmentHomeAdapter;
 import com.raisa.update1.adapter.FragmentTaskListAdapter;
+import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Member;
 import com.raisa.update1.object.Model;
 import com.raisa.update1.object.Task;
@@ -40,7 +41,7 @@ public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
     FragmentHomeAdapter adapter;
-    ArrayList<UpdateObject> list;
+    ArrayList<Emergency_msg> list;
 
     private DatabaseReference rootRef, rootRef2;
     @Nullable
@@ -77,8 +78,8 @@ public class HomeFragment extends Fragment {
                             for (DataSnapshot dataSnapshot1: snapshot1.getChildren())
                             {
 
-                                UpdateObject update = dataSnapshot1.getValue(UpdateObject.class);
-                                Log.d("Update", "u msg is "+update.getUpdate_msg());
+                                Emergency_msg update = dataSnapshot1.getValue(Emergency_msg.class);
+                                Log.d("Update", "u msg is "+update.getMsg());
                                 list.add(update);
                             }
                             adapter.notifyDataSetChanged();
