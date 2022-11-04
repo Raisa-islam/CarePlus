@@ -43,6 +43,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 import com.raisa.update1.Views.DayViewCheckBox;
+import com.raisa.update1.object.Alarm;
 import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Task;
 
@@ -163,6 +164,8 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
                 Log.d("alarm", "state " + b);
                 if(b)
                 {
+//                    Alarm alarm = new Alarm(task.getHour(), task.getMin(),task.getEveryday(), task.getSun(), task.getMon(), task.getTues(), task.getWed(), task.getThurs(), task.getFri(), task.getSat(), task.getTitle());
+//                    alarm.SetAlarm();
                     Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();                                                     // alarm set krbo
                 }
                 else

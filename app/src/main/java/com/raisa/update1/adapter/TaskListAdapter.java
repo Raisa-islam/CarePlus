@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.provider.AlarmClock;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -26,6 +28,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,13 +37,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
 import com.raisa.update1.Views.DayViewCheckBox;
+import com.raisa.update1.object.Alarm;
 import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Task;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyViewHolder> {
     Context context;
+    final ArrayList<Integer> daysOfWeek= new ArrayList<>();
 
     ArrayList<Task> list;
     private DatabaseReference rootRef;
@@ -68,40 +74,54 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
         String m = "";
       if(task.getEveryday() == "1")
        {
+           daysOfWeek.add(Calendar.SUNDAY);
+           daysOfWeek.add(Calendar.MONDAY);
+           daysOfWeek.add(Calendar.TUESDAY);
+           daysOfWeek.add(Calendar.WEDNESDAY);
+           daysOfWeek.add(Calendar.THURSDAY);
+           daysOfWeek.add(Calendar.FRIDAY);
+           daysOfWeek.add(Calendar.SATURDAY);
            m = "Everyday";
        }
         if (task.getSun() == "1")
        {
+           daysOfWeek.add(Calendar.SUNDAY);
            String n = "S ";
            m += n;
        }
        if (task.getMon()=="1")
        {
+           daysOfWeek.add(Calendar.MONDAY);
            String n = "M ";
             m += n;
        }
         if (task.getTues() == "1")
         {
+            daysOfWeek.add(Calendar.TUESDAY);
             String n = "T ";
             m += n;
         }
         if (task.getWed() == "1")
         {
+            daysOfWeek.add(Calendar.WEDNESDAY);
             String n = "W ";
             m += n;
         }
         if (task.getThurs() == "1")
         {
+            daysOfWeek.add(Calendar.THURSDAY);
             String n = "T ";
             m += n;
         }
         if (task.getFri() == "1")
         {
+            daysOfWeek.add(Calendar.FRIDAY);
             String n = "F ";
             m += n;
         }
         if (task.getSat() == "1")
         {
+            daysOfWeek.add(Calendar.SATURDAY);
             String n = "S ";
             m += n;
         }
@@ -154,6 +174,17 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
                 Log.d("alarm", "state " + b);
                 if(b)
                 {
+                    Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+                    intent.putExtra(AlarmClock.EXTRA_HOUR, Integer.parseInt(task.getHour()));
+                    intent.putExtra(AlarmClock.EXTRA_MINUTES, Integer.parseInt(task.getMin()));
+                    intent.putExtra(AlarmClock.EXTRA_DAYS, daysOfWeek);
+                    intent.putExtra(AlarmClock.EXTRA_VIBRATE, false);
+                    intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+                    intent.putExtra(AlarmClock.EXTRA_RINGTONE, true);
+                    if(intent.resolveActivity(context.getPackageManager())!=null)
+                    {
+                        holder.rootView.getContext().startActivity(intent);
+                    }
                     Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();                                                     // alarm set krbo
                 }
                 else
@@ -177,9 +208,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
 
         TextView title, description, hour, min, status, days;
         ImageView menu;
+        View rootView;
         Switch alarmStarted;
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
+            rootView = itemView;
             title = itemView.findViewById(R.id.title);
             description = itemView.findViewById(R.id.description);
             hour = itemView.findViewById(R.id.hour);

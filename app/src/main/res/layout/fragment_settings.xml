@@ -95,9 +95,16 @@
 
 
         <TextView
+            android:id="@+id/terms"
             style="@style/viewParent.headerText.settingsTextIcon"
-            android:drawableLeft="@drawable/ic_logout"
-            android:text="Logout"
+            android:drawableLeft="@drawable/terms"
+            android:text="Terms and Policies"
+            android:textColorLink="#FF5722" />
+        <TextView
+            android:id="@+id/report"
+            style="@style/viewParent.headerText.settingsTextIcon"
+            android:drawableLeft="@drawable/report_1"
+            android:text="Report bug/ Contact us"
             android:textColorLink="#FF5722" />
 
         <TextView

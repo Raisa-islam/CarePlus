@@ -1,9 +1,14 @@
 package com.raisa.update1.adapter;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -34,16 +39,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.raisa.update1.Card.Calender_card;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.R;
+import com.raisa.update1.object.Alarm;
 import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Event;
+import com.raisa.update1.reminderset.AlarmBrodcast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyViewHolder>{
     Context context;
 
     ArrayList<Event> list;
     private DatabaseReference rootRef;
+    String timeTonotify;
 
     public EventListAdapter(Context context, ArrayList<Event> list) {
         this.context = context;
@@ -165,6 +177,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
                 Log.d("alarm", "state " + b);
                     if(b)
                     {
+
                         Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();                                                     // alarm set krbo
                     }
                     else
@@ -324,4 +337,33 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         rootRef.removeValue();
         Toast.makeText(context, "Event deleted", Toast.LENGTH_SHORT).show();
     }
+
+//    private void setAlarm(String text, String date, String time) {
+//        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);                   //assigining alaram manager object to set alaram
+//
+//        Intent intent = new Intent(context.getApplicationContext(), AlarmBrodcast.class);
+//        intent.putExtra("event", text);                                                       //sending data to alarm class to create channel and notification
+//        intent.putExtra("time", date);
+//        intent.putExtra("date", time);
+//
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+//        String dateandtime = date + " " + timeTonotify;
+//        DateFormat formatter = new SimpleDateFormat("d-M-yyyy hh:mm");
+//        try {
+//            Date date1 = formatter.parse(dateandtime);
+//            am.set(AlarmManager.RTC_WAKEUP, date1.getTime(), pendingIntent);
+//            Toast.makeText(context.getApplicationContext(), "Alaram", Toast.LENGTH_SHORT).show();
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Intent intentBack = new Intent(context.getApplicationContext(), Calender_card.class);                //this intent will be called once the setting alaram is completes
+//        intentBack.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intentBack);                                                                  //navigates from adding reminder activity ot mainactivity
+//
+//    }
+//
+//    private Object getSystemService(String alarmService) {
+//    }
 }
