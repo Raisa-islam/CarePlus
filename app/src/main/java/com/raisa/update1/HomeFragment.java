@@ -37,11 +37,14 @@ import com.raisa.update1.object.UpdateObject;
 
 import java.util.ArrayList;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
     FragmentHomeAdapter adapter;
     ArrayList<Emergency_msg> list;
+    GifImageView noNote;
 
     private DatabaseReference rootRef, rootRef2;
     @Nullable
@@ -53,7 +56,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
         set_var();
-
+        noNote = getView().findViewById(R.id.noNote);
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
 
         recyclerView = getView().findViewById(R.id.recyclerView);
@@ -79,8 +82,15 @@ public class HomeFragment extends Fragment {
                             {
 
                                 Emergency_msg update = dataSnapshot1.getValue(Emergency_msg.class);
-                                Log.d("Update", "u msg is "+update.getMsg());
+                                //Log.d("Update", "u msg is "+update.getMsg());
                                 list.add(update);
+                            }
+                            if (list.size()==0)
+                            {
+
+                            }
+                            else {
+                                noNote.setVisibility(View.GONE);
                             }
                             adapter.notifyDataSetChanged();
                         }
@@ -105,6 +115,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
         adapter = new FragmentHomeAdapter(getContext(), list);// rootref
         recyclerView.setAdapter(adapter);
     }

@@ -42,12 +42,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Constants.GlobalVariable;
 import com.raisa.update1.adapter.EventListAdapter;
+import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Event;
+import com.raisa.update1.object.Model;
 
 import java.util.ArrayList;
 
 public class CalenderFragment extends Fragment {
-    private DatabaseReference rootRef;
+    private DatabaseReference rootRef, rootRef2, rootRef3;
     TextView addEvent;
     ImageView calender;
     EventListAdapter adapter;
@@ -67,6 +69,7 @@ public class CalenderFragment extends Fragment {
         set_var();
 
         rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Events");
+        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
 
         addEvent = getView().findViewById(R.id.addTask);
         calender = getView().findViewById(R.id.calendar);
@@ -103,8 +106,14 @@ public class CalenderFragment extends Fragment {
 
             }
         });
+
+
         adapter = new EventListAdapter(getContext(), list);// rootref
         recyclerView.setAdapter(adapter);
+
+
+
+
         calender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
