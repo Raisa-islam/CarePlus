@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.raisa.update1.Card.FindMember;
+import com.raisa.update1.Constants.GlobalVariable;
 
 public class SettingsFragment extends Fragment {
     TextView terms;
     TextView report;
+    EditText name;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,6 +29,8 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view,savedInstanceState);
         terms = getView().findViewById(R.id.terms);
         report = getView().findViewById(R.id.report);
+        name = getView().findViewById(R.id.usernameTextView);
+        name.setText(GlobalVariable.UserName);
 
         terms.setOnClickListener(new View.OnClickListener() {
             @Override
