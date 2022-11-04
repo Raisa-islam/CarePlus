@@ -30,51 +30,71 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.Constants.ViewConstant;
 import com.raisa.update1.R;
 import com.raisa.update1.adapter.EventListAdapter;
+import com.raisa.update1.adapter.MemSelectAdapter;
 import com.raisa.update1.adapter.TaskListAdapter;
 import com.raisa.update1.object.Event;
+import com.raisa.update1.object.Model;
 import com.raisa.update1.object.Task;
 
 import java.util.ArrayList;
 
 public class Calender_card extends AppCompatActivity {
-    private DatabaseReference rootRef;
+    private DatabaseReference rootRef, rootRef2;
     TextView addEvent;
     ImageView calender;
     EventListAdapter adapter;
     ArrayList<Event> list;
     RecyclerView recyclerView;
+
+    MemSelectAdapter adapter2;
+    ArrayList<Model> list2;
+    RecyclerView recyclerView2;
+    ImageView select;
+
+    TextView currentMember;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_calender_card);
 
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Events");
+
 
         addEvent = findViewById(R.id.addTask);
         calender = findViewById(R.id.calendar);
-        recyclerView = findViewById(R.id.eventRecycler);
 
-        recyclerView = findViewById(R.id.eventRecycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        select = findViewById(R.id.select);
+        rootRef2 =  FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
 
-        list = new ArrayList<>();
+        recyclerView2 = findViewById(R.id.mem_item2);
+        recyclerView2.setHasFixedSize(true);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        rootRef.addValueEventListener(new ValueEventListener() {
+        list2 = new ArrayList<>();
+
+        addEvent = findViewById(R.id.addTask);
+
+        calender = findViewById(R.id.calendar);
+        currentMember = findViewById(R.id.currentView);
+
+
+        currentMember.setText(GlobalVariable.UserName);
+        rootRef2.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
+                list2.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
-                    Event task = dataSnapshot.getValue(Event.class);
-                    list.add(task);
+                    Model member = dataSnapshot.getValue(Model.class);
+                    list2.add(member);
                 }
-                adapter.notifyDataSetChanged();
-                if(list.size()==0){
+                adapter2.notifyDataSetChanged();
+                if(list2.size()==0){
 
                 }
                 else{
@@ -88,8 +108,32 @@ public class Calender_card extends AppCompatActivity {
 
             }
         });
-        adapter = new EventListAdapter(this, list);// rootref
-        recyclerView.setAdapter(adapter);
+
+
+        adapter2 = new MemSelectAdapter(Calender_card.this, list2);// rootref
+        recyclerView2.setAdapter(adapter2);
+
+
+
+        ViewConstant.UserNameOfView = GlobalVariable.UserName;
+        ViewConstant.UidOfView = GlobalVariable.Uid;
+        ViewConstant.EmailOfView = GlobalVariable.Email;
+
+        showdata();
+
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showdata();
+                currentMember.setText(ViewConstant.UserNameOfView);
+            }
+        });
+
+
+
+
+
+
         calender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -201,5 +245,43 @@ public class Calender_card extends AppCompatActivity {
         String id = rootRef.push().getKey();
         Event event = new Event(id, title, description, hour, min, dd, mm, yy);
         rootRef.child(id).setValue(event);
+    }
+
+    public void showdata()
+    {
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Events");
+        recyclerView = findViewById(R.id.eventRecycler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        list = new ArrayList<>();
+
+        rootRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Event task = dataSnapshot.getValue(Event.class);
+                    list.add(task);
+                }
+                adapter.notifyDataSetChanged();
+                if(list.size()==0){
+
+                }
+                else{
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        adapter = new EventListAdapter(this, list);// rootref
+        recyclerView.setAdapter(adapter);
     }
 }

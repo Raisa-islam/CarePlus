@@ -41,7 +41,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.Constants.ViewConstant;
 import com.raisa.update1.adapter.EventListAdapter;
+import com.raisa.update1.adapter.FragmentMemberListAdapter;
+import com.raisa.update1.adapter.MemSelectAdapter;
 import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Event;
 import com.raisa.update1.object.Model;
@@ -56,6 +59,13 @@ public class CalenderFragment extends Fragment {
     ArrayList<Event> list;
     RecyclerView recyclerView;
 
+    MemSelectAdapter adapter2;
+    ArrayList<Model> list2;
+    RecyclerView recyclerView2;
+    ImageView select;
+
+    TextView currentMember;
+
 
     @Nullable
     @Override
@@ -68,31 +78,34 @@ public class CalenderFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         set_var();
 
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Events");
-        rootRef2 = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
+        select = getView().findViewById(R.id.select);
+        rootRef2 =  FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
+
+        recyclerView2 = getView().findViewById(R.id.mem_item2);
+        recyclerView2.setHasFixedSize(true);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        list2 = new ArrayList<>();
 
         addEvent = getView().findViewById(R.id.addTask);
+
         calender = getView().findViewById(R.id.calendar);
-        recyclerView = getView().findViewById(R.id.eventRecycler);
+        currentMember = getView().findViewById(R.id.currentView);
 
-        recyclerView = getView().findViewById(R.id.eventRecycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        list = new ArrayList<>();
-
-        rootRef.addValueEventListener(new ValueEventListener() {
+        currentMember.setText(GlobalVariable.UserName);
+        rootRef2.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
+                list2.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
-                    Event task = dataSnapshot.getValue(Event.class);
-                    list.add(task);
+                    Model member = dataSnapshot.getValue(Model.class);
+                    list2.add(member);
                 }
-                adapter.notifyDataSetChanged();
-                if(list.size()==0){
+                adapter2.notifyDataSetChanged();
+                if(list2.size()==0){
 
                 }
                 else{
@@ -108,8 +121,25 @@ public class CalenderFragment extends Fragment {
         });
 
 
-        adapter = new EventListAdapter(getContext(), list);// rootref
-        recyclerView.setAdapter(adapter);
+        adapter2 = new MemSelectAdapter(getContext(), list2);// rootref
+        recyclerView2.setAdapter(adapter2);
+
+
+
+        ViewConstant.UserNameOfView = GlobalVariable.UserName;
+        ViewConstant.UidOfView = GlobalVariable.Uid;
+        ViewConstant.EmailOfView = GlobalVariable.Email;
+
+        showdata();
+
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showdata();
+                currentMember.setText(ViewConstant.UserNameOfView);
+            }
+        });
+
 
 
 
@@ -203,7 +233,6 @@ public class CalenderFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
-
     }
     private void showCalender()
     {
@@ -227,6 +256,48 @@ public class CalenderFragment extends Fragment {
         rootRef.child(id).setValue(event);
     }
 
+
+    private void showdata()
+    {
+
+        recyclerView = getView().findViewById(R.id.eventRecycler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        list = new ArrayList<>();
+
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(ViewConstant.UidOfView).child("Events");
+        rootRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Event task = dataSnapshot.getValue(Event.class);
+                    list.add(task);
+                }
+                adapter.notifyDataSetChanged();
+                if(list.size()==0){
+
+                }
+                else{
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        adapter = new EventListAdapter(getContext(), list);// rootref
+        recyclerView.setAdapter(adapter);
+
+    }
     void set_var()
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

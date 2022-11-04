@@ -106,7 +106,7 @@ public static class MyViewHolder extends RecyclerView.ViewHolder implements View
         int pos = this.getAdapterPosition();
         Emergency_msg task = list.get(pos);
 
-        Log.d("click", "clicked" + task.getMsg());
+        //Log.d("click", "clicked" + task.getMsg());
 
     }
 }
