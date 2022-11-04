@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -38,9 +39,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.raisa.update1.Card.TaskList_card;
 import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.Constants.ViewConstant;
 import com.raisa.update1.Views.DayViewCheckBox;
 import com.raisa.update1.adapter.FragmentTaskListAdapter;
+import com.raisa.update1.adapter.MemSelectAdapter;
+import com.raisa.update1.object.Model;
 import com.raisa.update1.object.Task;
 
 import java.util.ArrayList;
@@ -49,12 +54,21 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class DailyTaskListFragment extends Fragment {
     TextView addTask;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, recyclerView2;
     FragmentTaskListAdapter adapter;
     ArrayList<Task> list;
     GifImageView noNote;
     int l, m;
-    private DatabaseReference rootRef;
+    private DatabaseReference rootRef, rootRef2;
+
+    ImageView select;
+
+    TextView currentMember;
+    //    int l, m;
+
+
+    MemSelectAdapter adapter2;
+    ArrayList<Model> list2;
 
     @Nullable
     @Override
@@ -68,38 +82,41 @@ public class DailyTaskListFragment extends Fragment {
         super.onViewCreated(view,savedInstanceState);
 
         set_var();
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
 
         addTask =getView().findViewById(R.id.addTask);
         noNote = getView().findViewById(R.id.noNote);
         //****************************************************
+        select = getView().findViewById(R.id.select);
 
-        recyclerView = getView().findViewById(R.id.taskRecycler);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-        //RecyclerView.LayoutManager LinearLayoutManager = null;
-        recyclerView.setLayoutManager(linearLayoutManager);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //****************************************************************************************************************************************************************************
+        rootRef2 =  FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
 
-        list = new ArrayList<>();
+        recyclerView2 = getView().findViewById(R.id.mem_item2);
+        recyclerView2.setHasFixedSize(true);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        rootRef.addValueEventListener(new ValueEventListener() {
+        list2 = new ArrayList<>();
+
+
+        currentMember = getView().findViewById(R.id.currentView);
+
+
+        currentMember.setText(GlobalVariable.UserName);
+        rootRef2.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
+                list2.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
-                    Task task = dataSnapshot.getValue(Task.class);
-                    list.add(task);
+                    Model member = dataSnapshot.getValue(Model.class);
+                    list2.add(member);
                 }
-                adapter.notifyDataSetChanged();
-                if(list.size()==0){
+                adapter2.notifyDataSetChanged();
+                if(list2.size()==0){
 
                 }
                 else{
-                    noNote.setVisibility(View.GONE);
+
                 }
 
             }
@@ -109,8 +126,28 @@ public class DailyTaskListFragment extends Fragment {
 
             }
         });
-        adapter = new FragmentTaskListAdapter(getContext(), list);// rootref
-        recyclerView.setAdapter(adapter);
+
+
+        adapter2 = new MemSelectAdapter(getContext(), list2);// rootref
+        recyclerView2.setAdapter(adapter2);
+
+
+
+        ViewConstant.UserNameOfView = GlobalVariable.UserName;
+        ViewConstant.UidOfView = GlobalVariable.Uid;
+        ViewConstant.EmailOfView = GlobalVariable.Email;
+
+        showdata();
+
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showdata();
+                currentMember.setText(ViewConstant.UserNameOfView);
+            }
+        });
+
+
 
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -328,5 +365,47 @@ public class DailyTaskListFragment extends Fragment {
             }
         });
 
+    }
+
+    private void showdata()
+    {
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
+        recyclerView = getView().findViewById(R.id.taskRecycler);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        //RecyclerView.LayoutManager LinearLayoutManager = null;
+        recyclerView.setLayoutManager(linearLayoutManager);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //****************************************************************************************************************************************************************************
+
+        list = new ArrayList<>();
+
+        rootRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Task task = dataSnapshot.getValue(Task.class);
+                    list.add(task);
+                }
+                adapter.notifyDataSetChanged();
+                if(list.size()==0){
+
+                }
+                else{
+                    noNote.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        adapter = new FragmentTaskListAdapter(getContext(), list);// rootref
+        recyclerView.setAdapter(adapter);
     }
 }

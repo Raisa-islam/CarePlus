@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -28,9 +29,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.Constants.ViewConstant;
 import com.raisa.update1.R;
 import com.raisa.update1.Views.DayViewCheckBox;
+import com.raisa.update1.adapter.MemSelectAdapter;
 import com.raisa.update1.adapter.TaskListAdapter;
+import com.raisa.update1.object.Model;
 import com.raisa.update1.object.Task;
 
 import java.util.ArrayList;
@@ -39,46 +43,65 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class TaskList_card extends AppCompatActivity {
     TextView addTask;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, recyclerView2;
     TaskListAdapter adapter;
     ArrayList<Task> list;
     GifImageView noNote;
-    int l, m;
-    private DatabaseReference rootRef;
+
+    ImageView select;
+
+    TextView currentMember;
+//    int l, m;
+    private DatabaseReference rootRef, rootRef2;
+
+    MemSelectAdapter adapter2;
+    ArrayList<Model> list2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_task_list_card);
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
+
 
         addTask = findViewById(R.id.addTask);
         noNote = findViewById(R.id.noNote);
         //****************************************************
         recyclerView = findViewById(R.id.taskRecycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //****************************************************************************************************************************************************************************
-        list = new ArrayList<>();
 
-        rootRef.addValueEventListener(new ValueEventListener() {
+        select = findViewById(R.id.select);
+
+        rootRef2 =  FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("MemberList");
+
+        recyclerView2 = findViewById(R.id.mem_item2);
+        recyclerView2.setHasFixedSize(true);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        list2 = new ArrayList<>();
+
+
+        currentMember = findViewById(R.id.currentView);
+
+
+        currentMember.setText(GlobalVariable.UserName);
+        rootRef2.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
+                list2.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
-                    Task task = dataSnapshot.getValue(Task.class);
-                    list.add(task);
+                    Model member = dataSnapshot.getValue(Model.class);
+                    list2.add(member);
                 }
-                adapter.notifyDataSetChanged();
-                if(list.size()==0){
+                adapter2.notifyDataSetChanged();
+                if(list2.size()==0){
 
                 }
                 else{
-                    noNote.setVisibility(View.GONE);
-                 }
+
+                }
 
             }
 
@@ -87,8 +110,30 @@ public class TaskList_card extends AppCompatActivity {
 
             }
         });
-        adapter = new TaskListAdapter(this, list);// rootref
-        recyclerView.setAdapter(adapter);
+
+
+        adapter2 = new MemSelectAdapter(TaskList_card.this, list2);// rootref
+        recyclerView2.setAdapter(adapter2);
+
+
+
+        ViewConstant.UserNameOfView = GlobalVariable.UserName;
+        ViewConstant.UidOfView = GlobalVariable.Uid;
+        ViewConstant.EmailOfView = GlobalVariable.Email;
+
+        showdata();
+
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showdata();
+                currentMember.setText(ViewConstant.UserNameOfView);
+            }
+        });
+
+
+
+
 
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,5 +315,42 @@ public class TaskList_card extends AppCompatActivity {
         Task task = new Task(id, title_add, description_add, hour, min, everyday, sun, mon, tues, wed, thurs, fri, sat);
         rootRef.child(id).setValue(task);
 
+    }
+
+    private void showdata()
+    {
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(ViewConstant.UidOfView).child("Tasks");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //****************************************************************************************************************************************************************************
+        list = new ArrayList<>();
+
+        rootRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Task task = dataSnapshot.getValue(Task.class);
+                    list.add(task);
+                }
+                adapter.notifyDataSetChanged();
+                if(list.size()==0){
+
+                }
+                else{
+                    noNote.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        adapter = new TaskListAdapter(this, list);// rootref
+        recyclerView.setAdapter(adapter);
     }
 }
