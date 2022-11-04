@@ -178,11 +178,11 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
                     if(b)
                     {
 
-                        Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();                                                     // alarm set krbo
+                        Toast.makeText(context, "Event Reminder is set", Toast.LENGTH_SHORT).show();                                                     // alarm set krbo
                     }
                     else
                     {
-                        Toast.makeText(context, "alarm is cancel", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Event reminder is cancel", Toast.LENGTH_SHORT).show();
                     }
 
 
