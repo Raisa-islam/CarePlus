@@ -114,7 +114,7 @@ public class Member_card extends AppCompatActivity {
                     Model member = dataSnapshot.getValue(Model.class);
                     listReq.add(member);
                 }
-                adapter.notifyDataSetChanged();
+                adapterReq.notifyDataSetChanged();
                 if(listReq.size()==0){
 
                 }

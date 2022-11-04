@@ -3,6 +3,7 @@ package com.raisa.update1.adapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.Constants.ViewConstant;
 import com.raisa.update1.R;
 import com.raisa.update1.object.Emergency_msg;
 
@@ -29,7 +31,8 @@ import java.util.ArrayList;
 public class E_adapter extends RecyclerView.Adapter<E_adapter.MyViewHolder> {
         Context context;
 
-        ArrayList<Emergency_msg> list;
+        static ArrayList<Emergency_msg> list;
+
 
     private DatabaseReference rootRef;
 
@@ -76,6 +79,7 @@ public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         }
     });
 
+
 }
 
 @Override
@@ -83,15 +87,26 @@ public int getItemCount() {
         return list.size();
         }
 
-public static class MyViewHolder extends RecyclerView.ViewHolder{
+public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    TextView title;
+    EditText title;
     ImageView menu;
 
     public MyViewHolder(@NonNull View itemView){
         super(itemView);
+        itemView.setOnClickListener(this);
         title = itemView.findViewById(R.id.title);
         menu = itemView.findViewById(R.id.options);
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        int pos = this.getAdapterPosition();
+        Emergency_msg task = list.get(pos);
+
+        Log.d("click", "clicked" + task.getMsg());
 
     }
 }

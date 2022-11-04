@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.raisa.update1.Constants.GlobalVariable;
+import com.raisa.update1.Constants.ViewConstant;
 import com.raisa.update1.R;
 import com.raisa.update1.adapter.E_adapter;
 import com.raisa.update1.object.Emergency_msg;
@@ -93,17 +94,34 @@ public class Emmergency extends AppCompatActivity {
             }
         });
 
+        //***************************************************************
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!ViewConstant.msg.isEmpty())
+                {
+
+                }
+            }
+        });
+
 //************************************************************************************************************************************************
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String m = msg.getText().toString();
-                String done = "!!! "+ GlobalVariable.UserName + " need " + m+"!!!";
-                String id = rootRef.push().getKey();
-                Emergency_msg update = new Emergency_msg(id, done);                      // new cls intentionally create kri nai
-                rootRef2.child(id).setValue(update);
-                Toast.makeText(Emmergency.this, "Emergency message sent", Toast.LENGTH_SHORT).show();
-                msg.setText("");
+                if(!m.isEmpty()){
+                    String done = "!!! "+ GlobalVariable.UserName + " --- " + m+"!!!";
+                    String id = rootRef.push().getKey();
+                    Emergency_msg update = new Emergency_msg(id, done);                      // new cls intentionally create kri nai
+                    rootRef2.child(id).setValue(update);
+                    Toast.makeText(Emmergency.this, "Emergency message sent", Toast.LENGTH_SHORT).show();
+                    msg.setText("");
+                }
+                else {
+                    Toast.makeText(Emmergency.this, "please fill the field", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         rootRef.addValueEventListener(new ValueEventListener() {
