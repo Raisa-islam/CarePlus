@@ -48,6 +48,8 @@ public class TaskList_card extends AppCompatActivity {
     ArrayList<Task> list;
     GifImageView noNote;
 
+    ImageView self;
+
     ImageView select;
 
     TextView currentMember;
@@ -82,6 +84,19 @@ public class TaskList_card extends AppCompatActivity {
 
 
         currentMember = findViewById(R.id.currentView);
+        self = findViewById(R.id.self);
+
+        self.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentMember.setText(GlobalVariable.UserName);
+                ViewConstant.UserNameOfView = GlobalVariable.UserName;
+                ViewConstant.UidOfView = GlobalVariable.Uid;
+                ViewConstant.EmailOfView = GlobalVariable.Email;
+                showdata();
+
+            }
+        });
 
 
         currentMember.setText(GlobalVariable.UserName);

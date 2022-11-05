@@ -52,6 +52,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
     private DatabaseReference rootRef;
 
 
+
     public TaskListAdapter(Context context, ArrayList<Task> list) {
         this.context = context;
         this.list = list;
@@ -86,43 +87,43 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
         if (task.getSun() == "1")
        {
            daysOfWeek.add(Calendar.SUNDAY);
-           String n = "S ";
+           String n = "Sun ";
            m += n;
        }
        if (task.getMon()=="1")
        {
            daysOfWeek.add(Calendar.MONDAY);
-           String n = "M ";
+           String n = "Mon ";
             m += n;
        }
         if (task.getTues() == "1")
         {
             daysOfWeek.add(Calendar.TUESDAY);
-            String n = "T ";
+            String n = "Tues ";
             m += n;
         }
         if (task.getWed() == "1")
         {
             daysOfWeek.add(Calendar.WEDNESDAY);
-            String n = "W ";
+            String n = "Wed ";
             m += n;
         }
         if (task.getThurs() == "1")
         {
             daysOfWeek.add(Calendar.THURSDAY);
-            String n = "T ";
+            String n = "Thurs ";
             m += n;
         }
         if (task.getFri() == "1")
         {
             daysOfWeek.add(Calendar.FRIDAY);
-            String n = "F ";
+            String n = "Fri ";
             m += n;
         }
         if (task.getSat() == "1")
         {
             daysOfWeek.add(Calendar.SATURDAY);
-            String n = "S ";
+            String n = "Sat ";
             m += n;
         }
         holder.days.setText(m);

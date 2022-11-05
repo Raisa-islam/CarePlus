@@ -6,10 +6,12 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.provider.AlarmClock;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -48,10 +50,11 @@ import com.raisa.update1.object.Emergency_msg;
 import com.raisa.update1.object.Task;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskListAdapter.MyViewHolder> {
     Context context;
-
+    final ArrayList<Integer> daysOfWeek= new ArrayList<>();
     ArrayList<Task> list;
     private DatabaseReference rootRef;
 
@@ -78,41 +81,55 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
         String m = "";
         if(task.getEveryday() == "1")
         {
+            daysOfWeek.add(Calendar.SUNDAY);
+            daysOfWeek.add(Calendar.MONDAY);
+            daysOfWeek.add(Calendar.TUESDAY);
+            daysOfWeek.add(Calendar.WEDNESDAY);
+            daysOfWeek.add(Calendar.THURSDAY);
+            daysOfWeek.add(Calendar.FRIDAY);
+            daysOfWeek.add(Calendar.SATURDAY);
             m = "Everyday";
         }
         if (task.getSun() == "1")
         {
-            String n = "S ";
+            daysOfWeek.add(Calendar.SUNDAY);
+            String n = "Sun ";
             m += n;
         }
         if (task.getMon()=="1")
         {
-            String n = "M ";
+            daysOfWeek.add(Calendar.MONDAY);
+            String n = "Mon ";
             m += n;
         }
         if (task.getTues() == "1")
         {
-            String n = "T ";
+            daysOfWeek.add(Calendar.TUESDAY);
+            String n = "Tues ";
             m += n;
         }
         if (task.getWed() == "1")
         {
-            String n = "W ";
+            daysOfWeek.add(Calendar.WEDNESDAY);
+            String n = "Wed ";
             m += n;
         }
         if (task.getThurs() == "1")
         {
-            String n = "T ";
+            daysOfWeek.add(Calendar.THURSDAY);
+            String n = "Thurs ";
             m += n;
         }
         if (task.getFri() == "1")
         {
-            String n = "F ";
+            daysOfWeek.add(Calendar.FRIDAY);
+            String n = "Fri ";
             m += n;
         }
         if (task.getSat() == "1")
         {
-            String n = "S ";
+            daysOfWeek.add(Calendar.SATURDAY);
+            String n = "Sat ";
             m += n;
         }
         holder.days.setText(m);
@@ -164,8 +181,18 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
                 Log.d("alarm", "state " + b);
                 if(b)
                 {
-//                    Alarm alarm = new Alarm(task.getHour(), task.getMin(),task.getEveryday(), task.getSun(), task.getMon(), task.getTues(), task.getWed(), task.getThurs(), task.getFri(), task.getSat(), task.getTitle());
-//                    alarm.SetAlarm();
+                    Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+                    intent.putExtra(AlarmClock.EXTRA_HOUR, Integer.parseInt(task.getHour()));
+                    intent.putExtra(AlarmClock.EXTRA_MINUTES, Integer.parseInt(task.getMin()));
+                    intent.putExtra(AlarmClock.EXTRA_DAYS, daysOfWeek);
+                    intent.putExtra(AlarmClock.EXTRA_VIBRATE, false);
+                    intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+                    intent.putExtra(AlarmClock.EXTRA_RINGTONE, true);
+                    if(intent.resolveActivity(context.getPackageManager())!=null)
+                    {
+                        holder.rootView.getContext().startActivity(intent);
+                    }
+                    Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();
                     Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();                                                     // alarm set krbo
                 }
                 else
@@ -190,9 +217,12 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
         TextView title, description, hour, min, status, days;
         ImageView menu;
         Switch alarmStarted;
+        View rootView;
+
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
+            rootView = itemView;
             title = itemView.findViewById(R.id.title);
             description = itemView.findViewById(R.id.description);
             hour = itemView.findViewById(R.id.hour);

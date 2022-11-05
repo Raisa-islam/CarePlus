@@ -58,6 +58,7 @@ public class DailyTaskListFragment extends Fragment {
     FragmentTaskListAdapter adapter;
     ArrayList<Task> list;
     GifImageView noNote;
+    ImageView self;
     int l, m;
     private DatabaseReference rootRef, rootRef2;
 
@@ -98,6 +99,19 @@ public class DailyTaskListFragment extends Fragment {
 
 
         currentMember = getView().findViewById(R.id.currentView);
+        self = getView().findViewById(R.id.self);
+
+        self.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentMember.setText(GlobalVariable.UserName);
+                ViewConstant.UserNameOfView = GlobalVariable.UserName;
+                ViewConstant.UidOfView = GlobalVariable.Uid;
+                ViewConstant.EmailOfView = GlobalVariable.Email;
+                showdata();
+
+            }
+        });
 
 
         currentMember.setText(GlobalVariable.UserName);
@@ -369,7 +383,7 @@ public class DailyTaskListFragment extends Fragment {
 
     private void showdata()
     {
-        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(GlobalVariable.Uid).child("Tasks");
+        rootRef = FirebaseDatabase.getInstance().getReference().child("careNeeder").child(ViewConstant.UidOfView).child("Tasks");
         recyclerView = getView().findViewById(R.id.taskRecycler);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());

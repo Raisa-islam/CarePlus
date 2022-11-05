@@ -58,6 +58,7 @@ public class CalenderFragment extends Fragment {
     EventListAdapter adapter;
     ArrayList<Event> list;
     RecyclerView recyclerView;
+    ImageView self;
 
     MemSelectAdapter adapter2;
     ArrayList<Model> list2;
@@ -91,7 +92,19 @@ public class CalenderFragment extends Fragment {
 
         calender = getView().findViewById(R.id.calendar);
         currentMember = getView().findViewById(R.id.currentView);
+        self = getView().findViewById(R.id.self);
 
+        self.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentMember.setText(GlobalVariable.UserName);
+                ViewConstant.UserNameOfView = GlobalVariable.UserName;
+                ViewConstant.UidOfView = GlobalVariable.Uid;
+                ViewConstant.EmailOfView = GlobalVariable.Email;
+                showdata();
+
+            }
+        });
 
         currentMember.setText(GlobalVariable.UserName);
         rootRef2.addValueEventListener(new ValueEventListener() {
