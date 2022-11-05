@@ -51,7 +51,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
     ArrayList<Task> list;
     private DatabaseReference rootRef;
 
-
+    String m = "";
 
     public TaskListAdapter(Context context, ArrayList<Task> list) {
         this.context = context;
@@ -72,7 +72,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
         holder.description.setText(task.getDescription());
         holder.hour.setText(task.getHour());
         holder.min.setText(task.getMin());
-        String m = "";
+
       if(task.getEveryday() == "1")
        {
            daysOfWeek.add(Calendar.SUNDAY);

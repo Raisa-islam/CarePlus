@@ -58,7 +58,7 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
     ArrayList<Task> list;
     private DatabaseReference rootRef;
 
-
+    String m = "";
     public FragmentTaskListAdapter(Context context, ArrayList<Task> list) {
         this.context = context;
         this.list = list;
@@ -78,7 +78,7 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
         holder.description.setText(task.getDescription());
         holder.hour.setText(task.getHour());
         holder.min.setText(task.getMin());
-        String m = "";
+
         if(task.getEveryday() == "1")
         {
             daysOfWeek.add(Calendar.SUNDAY);

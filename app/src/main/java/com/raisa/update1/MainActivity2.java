@@ -49,7 +49,7 @@ public class MainActivity2 extends AppCompatActivity {
         userManual = findViewById(R.id.card_UserManual);
 
         set_var();
-
+        name.setText(GlobalVariable.UserName);
         userManual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
