@@ -42,6 +42,7 @@
                     android:textSize="20sp"
                     android:layout_weight="1"
                     android:id="@+id/title"
+                    android:background="@android:color/transparent"
                     android:textColor="@android:color/black"/>
 
                 <ImageView
