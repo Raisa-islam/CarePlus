@@ -96,6 +96,12 @@ public class MainActivity3 extends AppCompatActivity implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
                 break;
 
+
+            case R.id.nav_userManual:
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new UserManualFragment()).commit();
+                break;
+
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
                 Intent i = new Intent(MainActivity3.this, LogIn.class);
@@ -103,6 +109,8 @@ public class MainActivity3 extends AppCompatActivity implements NavigationView.O
                 finish();
                 Toast.makeText(MainActivity3.this, "Logged out!", Toast.LENGTH_SHORT).show();
                 break;
+
+
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

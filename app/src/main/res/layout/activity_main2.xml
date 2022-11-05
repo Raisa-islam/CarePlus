@@ -359,10 +359,10 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="45dp"
+                            android:layout_width="40dp"
                             android:layout_height="45dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/ic_baseline_groups_2_24" />
+                            android:background="@drawable/uses" />
 
                         <TextView
                             android:layout_width="wrap_content"
