@@ -72,7 +72,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
         holder.description.setText(task.getDescription());
         holder.hour.setText(task.getHour());
         holder.min.setText(task.getMin());
-
+        m="";
       if(task.getEveryday() == "1")
        {
            daysOfWeek.add(Calendar.SUNDAY);

@@ -59,6 +59,7 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
     private DatabaseReference rootRef;
 
     String m = "";
+    static boolean check = false;
     public FragmentTaskListAdapter(Context context, ArrayList<Task> list) {
         this.context = context;
         this.list = list;
@@ -78,7 +79,7 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
         holder.description.setText(task.getDescription());
         holder.hour.setText(task.getHour());
         holder.min.setText(task.getMin());
-
+        m="";
         if(task.getEveryday() == "1")
         {
             daysOfWeek.add(Calendar.SUNDAY);
@@ -174,6 +175,10 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
                 });
             }
         });
+//        if (check){
+//            holder.alarmStarted.isChecked();
+//        }
+
 
         holder.alarmStarted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -181,6 +186,7 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
                 Log.d("alarm", "state " + b);
                 if(b)
                 {
+                    check = true;
                     Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
                     intent.putExtra(AlarmClock.EXTRA_HOUR, Integer.parseInt(task.getHour()));
                     intent.putExtra(AlarmClock.EXTRA_MINUTES, Integer.parseInt(task.getMin()));
@@ -193,7 +199,7 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
                         holder.rootView.getContext().startActivity(intent);
                     }
                     Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, "alarm is set", Toast.LENGTH_SHORT).show();                                                     // alarm set krbo
+                                                                    // alarm set krbo
                 }
                 else
                 {
