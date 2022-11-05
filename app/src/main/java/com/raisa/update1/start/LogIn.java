@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ import com.raisa.update1.R;
 public class LogIn extends AppCompatActivity {
     TextView createnewAccount, fprgotPassward;
     EditText email, password;
+
+    private ProgressBar loadingPB;
     Button login;
     String emailPattern = "[a-zA-Z0-9._-]+@[a_z]+\\.+[a-z]+" ;
 
@@ -46,6 +49,8 @@ public class LogIn extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
+
+        loadingPB = findViewById(R.id.loading);
 
         createnewAccount=findViewById(R.id.createNewAccount);
         login = findViewById(R.id.btnLogin);
@@ -82,15 +87,18 @@ public class LogIn extends AppCompatActivity {
 
                }
                else{
+                   loadingPB.setVisibility(View.VISIBLE);
                    firebaseAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                        @Override
                        public void onSuccess(AuthResult authResult) {
+
                            Toast.makeText(LogIn.this, "Loggedin Successfully", Toast.LENGTH_SHORT).show();
                            checkUserAccessLevel(authResult.getUser().getUid());
                        }
                    }).addOnFailureListener(new OnFailureListener() {
                        @Override
                        public void onFailure(@NonNull Exception e) {
+                           loadingPB.setVisibility(View.GONE);
                            Toast.makeText(LogIn.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                        }
                    });
@@ -133,11 +141,13 @@ public class LogIn extends AppCompatActivity {
 
                 if (documentSnapshot.getString("isAged") != null)
                 {
+                    loadingPB.setVisibility(View.GONE);
                     startActivity(new Intent(getApplicationContext(), MainActivity2.class));
                     finish();
                 }
                 if (documentSnapshot.getString("isCareGiver") != null)
                 {
+                    loadingPB.setVisibility(View.GONE);
                     startActivity(new Intent(getApplicationContext(), MainActivity3.class));
                     finish();
                 }
