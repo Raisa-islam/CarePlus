@@ -246,7 +246,7 @@ public class FragmentTaskListAdapter extends RecyclerView.Adapter<FragmentTaskLi
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.fragment_create_task);
 
-        TextView createTask;
+        Button createTask;
         createTask = dialog.findViewById(R.id.AddNewTask);
 
         EditText title_f = dialog.findViewById(R.id.idEdtTask);

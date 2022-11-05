@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -182,7 +183,7 @@ public class DailyTaskListFragment extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.fragment_create_task);
 
-        TextView createTask;
+        Button createTask;
         createTask = dialog.findViewById(R.id.AddNewTask);
 
         EditText title_f = dialog.findViewById(R.id.idEdtTask);
